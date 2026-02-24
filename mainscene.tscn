@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cu3tvuefuil8u"]
+
+[ext_resource type="Script" uid="uid://sm4v7kv1yeew" path="res://RigidBody3d.cs" id="1_wtdyi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nn0u8"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wtdyi"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xtb1e"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dn5c8"]
+
+[node name="Node3D" type="Node3D" unique_id=992952934]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1349802196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1294252, 0)
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_wtdyi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1991152649]
+shape = SubResource("CapsuleShape3D_nn0u8")
+
+[node name="Camera3D" type="Camera3D" parent="RigidBody3D" unique_id=1907626312]
+transform = Transform3D(1, 0, 0, 0, 0.9397881, 0.3417577, 0, -0.3417577, 0.9397881, 0, 1.6898726, 2.8855298)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=312577452]
+mesh = SubResource("CapsuleMesh_wtdyi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=872982333]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=527151447]
+shape = SubResource("WorldBoundaryShape3D_xtb1e")
+debug_color = Color(1.347661e-06, 0.5634297, 0.87495095, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1955754454]
+transform = Transform3D(9.815183, 0, 0, 0, 1, 0, 0, 0, 9.815183, 0, 0, 0)
+mesh = SubResource("PlaneMesh_dn5c8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=123195760]
+transform = Transform3D(0.8990999, 0.11224072, 0.42310926, -0.43774357, 0.23053592, 0.86904186, 0, -0.96656877, 0.25640747, 7.6264, 10.183279, 4.716096)

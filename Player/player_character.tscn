@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dplh7auo5u0mh" path="res://Player/PlayerCharacter.cs" id="1_dfy8k"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dfy8k"]
+friction = 0.5
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nn0u8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wtdyi"]
@@ -11,7 +14,14 @@
 [node name="PlayerCharacter" type="RigidBody3D" unique_id=506710821]
 axis_lock_angular_x = true
 axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_dfy8k")
+gravity_scale = 9.8
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_dfy8k")
+verticalLimiterTop = 85.0
+acceleration = 100.0
+jumpStrength = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1924117274]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -31,4 +41,5 @@ spring_length = 5.0
 
 [node name="PlayerCamera" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=1433487402]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99619466, -0.08715573, 0, 0.08715573, 0.99619466, 0, 0, 0)
+fov = 90.0

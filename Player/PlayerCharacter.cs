@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class PlayerCharacter : RigidBody3D
 {
+    // export variables
     [ExportGroup("Camera")]
     [Export(PropertyHint.Range, "1, 10")]
     private float mouseSensitivityX = 5;
@@ -20,34 +21,39 @@ public partial class PlayerCharacter : RigidBody3D
     private float moveSpeed = 10;
     [Export(PropertyHint.Range, "10, 100")]
     private float acceleration = 100;
-    [Export(PropertyHint.Range, "1, 10")]
-    private float jumpStrength = 3;
+    [Export(PropertyHint.Range, "1, 50")]
+    private float jumpStrength = 15;
     [Export(PropertyHint.Range, "1, 10")]
     private float maxJumps = 2;
     [Export(PropertyHint.Range, "10, 500")]
     private float jumpDelay = 100;
-    [Export(PropertyHint.Range, "1, 10")]
-    private float bulletJumpStrength = 5;
+    [Export(PropertyHint.Range, "1, 50")]
+    private float bulletJumpStrength = 20;
+    [Export(PropertyHint.Range, "1, 100")]
+    private float bulletJumpSpeed = 50;
     [Export(PropertyHint.Range, "0, 1")]
-    private float bulletJumpVerticalBoost = 0.5f;
+    private float bulletJumpVerticalSkew = 0.5f;
     [Export(PropertyHint.Range, "1, 10")]
     private float maxBulletJumps = 1;
     [Export(PropertyHint.Range, "10, 1000")]
-    private float bulletJumpDelay = 500;
+    private float bulletJumpDuration = 500;
 
-
+    // camera variables
     private Node3D cameraPivot;
     private float cameraRotationX = 0;
     private float cameraRotationY = 0;
+    // movement variables
     private int jumpCount = 0;
     private int bulletJumpCount = 0;
     private ulong lastJumpTime = 0;
     private ulong lastBulletJumpTime = 0;
+    private float gravityScale = 0;
 
     // gets called once when the node is ready (all children have been created), initialize stuff here
     public override void _Ready()
     {
         cameraPivot = GetNode<Node3D>("%CameraPivot");
+        gravityScale = GravityScale;
 
         base._Ready();
     }
@@ -71,8 +77,8 @@ public partial class PlayerCharacter : RigidBody3D
             ApplyCentralForce(moveDirection * acceleration);
         }
 
-        // print velocity for debug
-        if(Time.GetTicksMsec() % 500 < 10) Debug.Print(LinearVelocity.ToString());
+        // resets gravity if we're out of bullet jump
+        if(Time.GetTicksMsec() - lastBulletJumpTime > bulletJumpDuration) GravityScale = gravityScale;
 
         base._PhysicsProcess(delta);
     }
@@ -91,37 +97,48 @@ public partial class PlayerCharacter : RigidBody3D
     public override void _UnhandledKeyInput(InputEvent @event)
     {
         // jump
-        if (@event.IsActionPressed("jump"))
+        if (@event.IsActionPressed("jump") && jumpCount < maxJumps)
         {
             // bullet jump if ctrl is pressed and we're allowed
-            if (Input.IsActionPressed("crouch_slide") && bulletJumpCount < maxBulletJumps && Time.GetTicksMsec() - lastBulletJumpTime > bulletJumpDelay)
+            if (Input.IsActionPressed("crouch_slide") && bulletJumpCount < maxBulletJumps && Time.GetTicksMsec() - lastBulletJumpTime > bulletJumpDuration)
             {
-                Vector3 bulletJumpVector = (-1 * cameraPivot.GlobalBasis.Z) + (Vector3.Up * bulletJumpVerticalBoost);
+                // gets the direction we are trying to bullet jump
+                Vector3 bulletJumpVector = ((-1 * cameraPivot.GlobalBasis.Z) + (Vector3.Up * bulletJumpVerticalSkew)).Normalized();
 
                 // bullet jumping upwards while falling cancels vertical velocity
                 Vector3 velocity = LinearVelocity;
                 if(velocity.Y < 0 && bulletJumpVector.Y > 0) velocity.Y = 0;
                 LinearVelocity = velocity;
 
-                ApplyCentralImpulse(bulletJumpVector * 10 * bulletJumpStrength);
+                // gets our velocity in the direction we are trying to jump
+                var velocityInJumpDirection = LinearVelocity.Dot(bulletJumpVector); // explanation in movement script (_PhysicsProcess)
+                // the faster we are the weaker the push is (to prevent infinite speed gain)
+                float pushMultiplier = Math.Clamp((bulletJumpSpeed - velocityInJumpDirection) / bulletJumpSpeed, 0, 1);
+
+                // executes bullet jump
+                gravityScale = GravityScale;
+                GravityScale = 0;
+                ApplyCentralImpulse(bulletJumpVector * bulletJumpStrength * pushMultiplier);
                 ulong time = Time.GetTicksMsec();
                 lastJumpTime = time;
                 lastBulletJumpTime = time;
                 jumpCount++;
                 bulletJumpCount++;
             }
-            else if(jumpCount < maxJumps && Time.GetTicksMsec() - lastJumpTime > jumpDelay) // else normal jump if we're allowed
+            else if(Time.GetTicksMsec() - lastJumpTime > jumpDelay) // else normal jump if we're allowed
             {
                 // jumping while falling cancels vertical velocity
                 Vector3 velocity = LinearVelocity;
                 if(velocity.Y < 0) velocity.Y = 0;
                 LinearVelocity = velocity;
 
-                ApplyCentralImpulse(Vector3.Up * 10 * jumpStrength);
+                ApplyCentralImpulse(Vector3.Up * jumpStrength);
                 lastJumpTime = Time.GetTicksMsec();
                 jumpCount++;
             }
         }
+
+        // roll
 
         base._UnhandledKeyInput(@event);
     }

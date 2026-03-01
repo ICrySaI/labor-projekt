@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dplh7auo5u0mh" path="res://Player/PlayerCharacter.cs" id="1_dfy8k"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dfy8k"]
-friction = 0.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nn0u8"]
 
@@ -15,13 +14,14 @@ friction = 0.5
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_dfy8k")
-gravity_scale = 9.8
 contact_monitor = true
 max_contacts_reported = 1
-linear_damp = 0.05
+linear_damp = 0.01
 script = ExtResource("1_dfy8k")
 verticalLimiterTop = 85.0
-bulletJumpStrength = 4.0
+bulletJumpSpeed = 30.0
+bulletJumpVerticalSkew = 0.2
+bulletJumpDuration = 300.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1924117274]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

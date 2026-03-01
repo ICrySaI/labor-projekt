@@ -19,19 +19,22 @@ public partial class PlayerCharacter : RigidBody3D
     [Export(PropertyHint.Range, "1, 20")]
     private float moveSpeed = 10;
     [Export(PropertyHint.Range, "10, 100")]
-    private float acceleration = 50;
+    private float acceleration = 100;
     [Export(PropertyHint.Range, "1, 10")]
-    private float jumpStrength = 5;
+    private float jumpStrength = 3;
     [Export(PropertyHint.Range, "1, 10")]
     private float maxJumps = 2;
+    [Export(PropertyHint.Range, "10, 500")]
+    private float jumpDelay = 100;
     [Export(PropertyHint.Range, "1, 10")]
     private float bulletJumpStrength = 5;
     [Export(PropertyHint.Range, "0, 1")]
     private float bulletJumpVerticalBoost = 0.5f;
     [Export(PropertyHint.Range, "1, 10")]
     private float maxBulletJumps = 1;
-    [Export(PropertyHint.Range, "10, 500")]
-    private float jumpDelay = 100;
+    [Export(PropertyHint.Range, "10, 1000")]
+    private float bulletJumpDelay = 500;
+
 
     private Node3D cameraPivot;
     private float cameraRotationX = 0;
@@ -39,6 +42,7 @@ public partial class PlayerCharacter : RigidBody3D
     private int jumpCount = 0;
     private int bulletJumpCount = 0;
     private ulong lastJumpTime = 0;
+    private ulong lastBulletJumpTime = 0;
 
     // gets called once when the node is ready (all children have been created), initialize stuff here
     public override void _Ready()
@@ -86,25 +90,33 @@ public partial class PlayerCharacter : RigidBody3D
 
     public override void _UnhandledKeyInput(InputEvent @event)
     {
-        // checks if we're allowed to jump
-        if (@event.IsActionPressed("jump") && jumpCount < maxJumps && Time.GetTicksMsec() - lastJumpTime > jumpDelay)
+        // jump
+        if (@event.IsActionPressed("jump"))
         {
-            // if we're falling jumping cancels the downwards velocity
-            Vector3 velocity = LinearVelocity;
-            if(velocity.Y < 0) velocity.Y = 0;
-            LinearVelocity = velocity;
-
-            // bullet jump if ctrl is pressed and we have enough left
-            if (Input.IsActionPressed("crouch_slide") && bulletJumpCount < maxBulletJumps)
+            // bullet jump if ctrl is pressed and we're allowed
+            if (Input.IsActionPressed("crouch_slide") && bulletJumpCount < maxBulletJumps && Time.GetTicksMsec() - lastBulletJumpTime > bulletJumpDelay)
             {
                 Vector3 bulletJumpVector = (-1 * cameraPivot.GlobalBasis.Z) + (Vector3.Up * bulletJumpVerticalBoost);
+
+                // bullet jumping upwards while falling cancels vertical velocity
+                Vector3 velocity = LinearVelocity;
+                if(velocity.Y < 0 && bulletJumpVector.Y > 0) velocity.Y = 0;
+                LinearVelocity = velocity;
+
                 ApplyCentralImpulse(bulletJumpVector * 10 * bulletJumpStrength);
-                lastJumpTime = Time.GetTicksMsec();
+                ulong time = Time.GetTicksMsec();
+                lastJumpTime = time;
+                lastBulletJumpTime = time;
                 jumpCount++;
                 bulletJumpCount++;
             }
-            else // else normal jump
+            else if(jumpCount < maxJumps && Time.GetTicksMsec() - lastJumpTime > jumpDelay) // else normal jump if we're allowed
             {
+                // jumping while falling cancels vertical velocity
+                Vector3 velocity = LinearVelocity;
+                if(velocity.Y < 0) velocity.Y = 0;
+                LinearVelocity = velocity;
+
                 ApplyCentralImpulse(Vector3.Up * 10 * jumpStrength);
                 lastJumpTime = Time.GetTicksMsec();
                 jumpCount++;

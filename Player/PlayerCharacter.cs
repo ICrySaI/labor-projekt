@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 
@@ -12,7 +13,7 @@ public partial class PlayerCharacter : RigidBody3D
     [Export(PropertyHint.Range, "1, 10")]
     private float mouseSensitivityY = 5;
     [Export(PropertyHint.Range, "45, 90")]
-    private float verticalLimiterTop = 90;
+    private float verticalLimiterTop = 85;
     [Export(PropertyHint.Range, "45, 90")]
     private float verticalLimiterBottom = 75;
 
@@ -21,22 +22,28 @@ public partial class PlayerCharacter : RigidBody3D
     private float moveSpeed = 10;
     [Export(PropertyHint.Range, "10, 100")]
     private float acceleration = 100;
+    [Export(PropertyHint.Range, "10, 100")]
+    private float airAcceleration = 20;
     [Export(PropertyHint.Range, "1, 50")]
     private float jumpStrength = 15;
     [Export(PropertyHint.Range, "1, 10")]
     private float maxJumps = 2;
     [Export(PropertyHint.Range, "10, 500")]
-    private float jumpDelay = 100;
+    private float jumpDelayMS = 100;
     [Export(PropertyHint.Range, "1, 50")]
     private float bulletJumpStrength = 20;
-    [Export(PropertyHint.Range, "1, 100")]
-    private float bulletJumpSpeed = 50;
     [Export(PropertyHint.Range, "0, 1")]
     private float bulletJumpVerticalSkew = 0.5f;
     [Export(PropertyHint.Range, "1, 10")]
     private float maxBulletJumps = 1;
     [Export(PropertyHint.Range, "10, 1000")]
-    private float bulletJumpDuration = 500;
+    private float bulletJumpDurationMS = 500;
+    [Export(PropertyHint.Range, "1, 50")]
+    private float slideBoostStrength = 10;
+    [Export(PropertyHint.Range, "10, 1000")]
+    private float slideBoostDelayMS = 500;
+    [Export(PropertyHint.Range, "1000, 10000")]
+    private float glideDurationMS = 5000;
 
     // camera variables
     private Node3D cameraPivot;
@@ -47,20 +54,39 @@ public partial class PlayerCharacter : RigidBody3D
     private int bulletJumpCount = 0;
     private ulong lastJumpTime = 0;
     private ulong lastBulletJumpTime = 0;
-    private float gravityScale = 0;
+    private ulong lastSlideTime = 0;
+    private float baseGravityScale = 1;
+    private bool isSliding = false;
+    private ulong glideStartTime = 0; // start time of current glide
+    private ulong glideTimer = 0; // duration of current glide (time since start)
+    private ulong glideTotalTime = 0; // total glide time since last touching the ground
+    private bool isGliding = false;
+
+    // player variables
+    private CollisionShape3D playerCollision;
+    private MeshInstance3D playerMesh;
+    private RayCast3D groundDetector;
+    private bool onGround = false;
+    private Dictionary<string, float> gravityMultipliers = new Dictionary<string, float>();
 
     // gets called once when the node is ready (all children have been created), initialize stuff here
     public override void _Ready()
     {
         cameraPivot = GetNode<Node3D>("%CameraPivot");
-        gravityScale = GravityScale;
+        playerCollision = GetNode<CollisionShape3D>("%PlayerCollision");
+        playerMesh = GetNode<MeshInstance3D>("%PlayerMesh");
+        groundDetector = GetNode<RayCast3D>("%GroundDetector");
+        baseGravityScale = GravityScale;
 
         base._Ready();
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        //---------- Apply movement forces ----------
+        ulong currentTime = Time.GetTicksMsec();
+
+        //---------- Apply movement forces ----------//
+
         Vector2 rawInput = Input.GetVector("move_left", "move_right", "move_forward", "move_backwards");
         Vector3 forward = cameraPivot.GlobalBasis.Z;
         Vector3 right = cameraPivot.GlobalBasis.X;
@@ -74,24 +100,35 @@ public partial class PlayerCharacter : RigidBody3D
         // if we're below the max speed apply acceleration force
         if(velocityInMoveDirection < moveSpeed)
         {
-            ApplyCentralForce(moveDirection * acceleration);
+            // accelerate if on ground and not sliding
+            if(onGround && !isSliding) ApplyCentralForce(moveDirection * acceleration);
+            // use air acceleration if not on ground
+            if (!onGround) ApplyCentralForce(moveDirection * airAcceleration);
         }
 
-        // resets gravity if we're out of bullet jump
-        if(Time.GetTicksMsec() - lastBulletJumpTime > bulletJumpDuration) GravityScale = gravityScale;
+        //---------- Checks for things that need to be checked every tick ----------//
+
+        // checks if we're on the ground
+        if(!onGround && groundDetector.IsColliding()) LandedOnGround();
+        else if(onGround && !groundDetector.IsColliding()) LeftGround();
+
+        //---------- Update things that need to be updated every tick ----------//
+
+        // resets jumps
+        if(onGround && currentTime - lastJumpTime > jumpDelayMS)
+        {
+            jumpCount = 0;
+            bulletJumpCount = 0;
+        }
+
+        // updates glide timer and ends glide if we're over the max duration
+        if(isGliding)
+        {
+            glideTimer = currentTime - glideStartTime;
+            if(glideTotalTime + glideTimer > glideDurationMS) EndGlide();
+        }
 
         base._PhysicsProcess(delta);
-    }
-
-
-    public override void _Input(InputEvent @event)
-    {
-        // capture mouse when game window is clicked, release with escape
-        if(@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left) Input.MouseMode = Input.MouseModeEnum.Captured;
-        if(@event.IsActionPressed("ui_cancel")) Input.MouseMode = Input.MouseModeEnum.Visible;
-
-
-        base._Input(@event);
     }
 
     public override void _UnhandledKeyInput(InputEvent @event)
@@ -99,46 +136,28 @@ public partial class PlayerCharacter : RigidBody3D
         // jump
         if (@event.IsActionPressed("jump") && jumpCount < maxJumps)
         {
-            // bullet jump if ctrl is pressed and we're allowed
-            if (Input.IsActionPressed("crouch_slide") && bulletJumpCount < maxBulletJumps && Time.GetTicksMsec() - lastBulletJumpTime > bulletJumpDuration)
+            // bullet jump if ctrl is pressed
+            if (Input.IsActionPressed("crouch_slide"))
             {
-                // gets the direction we are trying to bullet jump
-                Vector3 bulletJumpVector = ((-1 * cameraPivot.GlobalBasis.Z) + (Vector3.Up * bulletJumpVerticalSkew)).Normalized();
-
-                // bullet jumping upwards while falling cancels vertical velocity
-                Vector3 velocity = LinearVelocity;
-                if(velocity.Y < 0 && bulletJumpVector.Y > 0) velocity.Y = 0;
-                LinearVelocity = velocity;
-
-                // gets our velocity in the direction we are trying to jump
-                var velocityInJumpDirection = LinearVelocity.Dot(bulletJumpVector); // explanation in movement script (_PhysicsProcess)
-                // the faster we are the weaker the push is (to prevent infinite speed gain)
-                float pushMultiplier = Math.Clamp((bulletJumpSpeed - velocityInJumpDirection) / bulletJumpSpeed, 0, 1);
-
-                // executes bullet jump
-                gravityScale = GravityScale;
-                GravityScale = 0;
-                ApplyCentralImpulse(bulletJumpVector * bulletJumpStrength * pushMultiplier);
-                ulong time = Time.GetTicksMsec();
-                lastJumpTime = time;
-                lastBulletJumpTime = time;
-                jumpCount++;
-                bulletJumpCount++;
+                BulletJump();
             }
-            else if(Time.GetTicksMsec() - lastJumpTime > jumpDelay) // else normal jump if we're allowed
+            else // else normal jump
             {
-                // jumping while falling cancels vertical velocity
-                Vector3 velocity = LinearVelocity;
-                if(velocity.Y < 0) velocity.Y = 0;
-                LinearVelocity = velocity;
-
-                ApplyCentralImpulse(Vector3.Up * jumpStrength);
-                lastJumpTime = Time.GetTicksMsec();
-                jumpCount++;
+                Jump();
             }
         }
 
-        // roll
+        // slide
+        if (@event.IsActionPressed("crouch_slide"))
+        {
+            StartSlide();
+        }
+        if (@event.IsActionReleased("crouch_slide"))
+        {
+            EndSlide();
+        }
+
+        // dash
 
         base._UnhandledKeyInput(@event);
     }
@@ -163,15 +182,163 @@ public partial class PlayerCharacter : RigidBody3D
             cameraPivot.RotateObjectLocal(Vector3.Right, cameraRotationY);
         }
 
+        // glide
+        if (@event.IsActionPressed("glide"))
+        {
+            StartGlide();
+        }
+        if (@event.IsActionReleased("glide"))
+        {
+            EndGlide();
+        }
+
         base._UnhandledInput(@event);
     }
 
-
-    public override void _IntegrateForces(PhysicsDirectBodyState3D state)
+    public void LandedOnGround()
     {
-        // resets jumps if colliding with something and enough time has passed since the last jump
-        if(state.GetContactCount() > 0 && Time.GetTicksMsec() - lastJumpTime > jumpDelay) jumpCount = 0; bulletJumpCount = 0;
+        onGround = true;
+        // touching the ground ends gliding and resets it's duration
+        EndGlide();
+        glideTotalTime = 0;
+    }
+    public void LeftGround()
+    {
+        onGround = false;
+    }
 
-        base._IntegrateForces(state);
+    public void UpdateGravityScale()
+    {
+        float finalMultiplier = 1;
+        foreach (KeyValuePair<string, float> m in gravityMultipliers)
+        {
+            finalMultiplier *= m.Value;
+        }
+        GravityScale = baseGravityScale * finalMultiplier;
+    }
+
+    private void Jump()
+    {
+        // checks if we're allowed to jump
+        if (Time.GetTicksMsec() - lastJumpTime > jumpDelayMS)
+        {
+            // jumping while falling cancels vertical velocity
+            Vector3 velocity = LinearVelocity;
+            if(velocity.Y < 0) velocity.Y = 0;
+            LinearVelocity = velocity;
+
+            EndGlide();
+            EndBulletJump();
+            ApplyCentralImpulse(Vector3.Up * jumpStrength);
+            lastJumpTime = Time.GetTicksMsec();
+            jumpCount++;
+        }
+        
+    }
+    private void BulletJump()
+    {
+        // checks if we're allowed to bullet jump
+        if (bulletJumpCount < maxBulletJumps && Time.GetTicksMsec() - lastBulletJumpTime > bulletJumpDurationMS)
+        {
+            // gets the direction we are trying to bullet jump
+            Vector3 bulletJumpVector = ((-1 * cameraPivot.GlobalBasis.Z) + (Vector3.Up * bulletJumpVerticalSkew)).Normalized();
+
+            // bullet jumping cancels momentum
+            LinearVelocity = Vector3.Zero;
+
+            // executes bullet jump
+            EndSlide();
+            EndGlide();
+            gravityMultipliers.Add("bulletjump", 0);
+            UpdateGravityScale();
+            ApplyCentralImpulse(bulletJumpVector * bulletJumpStrength);
+
+            ulong time = Time.GetTicksMsec();
+            lastJumpTime = time;
+            lastBulletJumpTime = time;
+            jumpCount++;
+            bulletJumpCount++;
+
+            // starts a timer to remove the bullet jump gravity multiplier after the bullet jump duration elapses
+            SceneTreeTimer t = GetTree().CreateTimer(bulletJumpDurationMS / 1000f, true, true, false);
+            Callable c = Callable.From(() => EndBulletJump());
+            t.Connect("timeout", c);
+
+        }
+    }
+    private void EndBulletJump()
+    {
+        gravityMultipliers.Remove("bulletjump");
+        UpdateGravityScale();
+    }
+    
+    private void StartSlide()
+    {
+        // return if already sliding
+        if(isSliding) return;
+        
+        // start sliding
+        playerCollision.Shape = new SphereShape3D();
+        playerCollision.Translate(Vector3.Down * 0.5f);
+        playerMesh.Mesh = new SphereMesh();
+        playerMesh.Translate(Vector3.Down * 0.5f);
+
+        EndBulletJump();
+        PhysicsMaterialOverride.Friction = 0.3f;
+        isSliding = true;
+
+        // apply a boost if we're starting a slide on the ground and enough time has passed since the last one
+        if(onGround && Time.GetTicksMsec() - lastSlideTime > slideBoostDelayMS)
+        {
+            // get the direction to apply boost
+            Vector3 slideBoostVector = -1 * cameraPivot.GlobalBasis.Z;
+            slideBoostVector.Y = 0;
+            slideBoostVector = slideBoostVector.Normalized();
+            // apply boost
+            ApplyCentralImpulse(slideBoostVector * slideBoostStrength);
+            lastSlideTime = Time.GetTicksMsec();
+        }
+    }
+    private void EndSlide()
+    {
+        // return if not sliding
+        if(isSliding == false) return;
+
+        // end sliding
+        playerCollision.Shape = new CapsuleShape3D();
+        playerCollision.Translate(Vector3.Up * 0.5f);
+        playerMesh.Mesh = new CapsuleMesh();
+        playerMesh.Translate(Vector3.Up * 0.5f);
+        PhysicsMaterialOverride.Friction = 1f;
+        isSliding = false;
+    }
+
+    private void StartGlide()
+    {
+        if(isGliding) return; // if we're gliding no need to start
+        if(glideTotalTime > glideDurationMS) return; // can't glide if we're out of duration
+        if (onGround) return; // can only glide in the air
+
+        // starting a glide cancels upward movement
+        Vector3 velocity = LinearVelocity;
+        if(velocity.Y > 0)
+        {
+            velocity.Y = 0;
+            LinearVelocity = velocity;
+        }
+
+        glideStartTime = Time.GetTicksMsec();
+        gravityMultipliers.Add("glide", 0.05f);
+        UpdateGravityScale();
+        EndBulletJump();
+        isGliding = true;
+    }
+    private void EndGlide()
+    {
+        if(!isGliding) return; // if we're not gliding no need to end
+        gravityMultipliers.Remove("glide");
+        UpdateGravityScale();
+        glideTotalTime += glideTimer;
+        isGliding = false;
     }
 }

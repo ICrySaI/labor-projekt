@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cu3tvuefuil8u"]
 
 [ext_resource type="PackedScene" uid="uid://b3cwiwu66x3k" path="res://Player/player_character.tscn" id="1_5yt03"]
+[ext_resource type="Script" uid="uid://40jk8k1lhyev" path="res://Scenes/Mainscene.cs" id="1_a3v7h"]
 [ext_resource type="Script" uid="uid://dubnnd1xwsvpx" path="res://DebugPlayerVelocity.cs" id="2_tcjsh"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xtb1e"]
@@ -8,6 +9,7 @@
 [sub_resource type="PlaneMesh" id="PlaneMesh_dn5c8"]
 
 [node name="Node3D" type="Node3D" unique_id=992952934]
+script = ExtResource("1_a3v7h")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=872982333]
 

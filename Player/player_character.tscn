@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nn0u8"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_wtdyi"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dfy8k"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dfy8k"]
 
@@ -16,20 +16,21 @@ axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_dfy8k")
 contact_monitor = true
 max_contacts_reported = 1
-linear_damp = 0.01
 script = ExtResource("1_dfy8k")
-verticalLimiterTop = 85.0
-bulletJumpSpeed = 30.0
+bulletJumpStrength = 30.0
 bulletJumpVerticalSkew = 0.2
-bulletJumpDuration = 300.0
+bulletJumpDurationMS = 300.0
+glideDurationMS = 2000.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1924117274]
+[node name="PlayerCollision" type="CollisionShape3D" parent="." unique_id=1924117274]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_nn0u8")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=807021649]
+[node name="PlayerMesh" type="MeshInstance3D" parent="." unique_id=807021649]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_wtdyi")
+mesh = SubResource("CapsuleMesh_dfy8k")
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=1653063696]
 unique_name_in_owner = true
@@ -43,3 +44,8 @@ spring_length = 5.0
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.99619466, -0.08715573, 0, 0.08715573, 0.99619466, 0, 0, 0)
 fov = 90.0
+
+[node name="GroundDetector" type="RayCast3D" parent="." unique_id=1405439591]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+target_position = Vector3(0, -0.2, 0)

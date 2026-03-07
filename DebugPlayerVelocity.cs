@@ -17,7 +17,9 @@ public partial class DebugPlayerVelocity : Label
 	{
 		if(Time.GetTicksMsec() - lastUpdateTick > 100)
 		{
-			Text = "Velocity: " + Math.Round(playerCharacter.LinearVelocity.Length(), 2);
+			Vector3 horizontalVelocity = playerCharacter.LinearVelocity;
+			horizontalVelocity.Y = 0;
+			Text = "Velocity: " + Math.Round(horizontalVelocity.Length(), 2);
 			lastUpdateTick = Time.GetTicksMsec();
 		}
 	}

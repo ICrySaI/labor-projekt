@@ -17,10 +17,8 @@ physics_material_override = SubResource("PhysicsMaterial_dfy8k")
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_dfy8k")
-bulletJumpStrength = 30.0
-bulletJumpVerticalSkew = 0.2
-bulletJumpDurationMS = 300.0
-glideDurationMS = 2000.0
+dashStrength = 30.0
+dashCooldownMS = 500.0
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="." unique_id=1924117274]
 unique_name_in_owner = true

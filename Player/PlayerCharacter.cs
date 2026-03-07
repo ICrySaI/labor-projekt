@@ -31,19 +31,23 @@ public partial class PlayerCharacter : RigidBody3D
     [Export(PropertyHint.Range, "10, 500")]
     private float jumpDelayMS = 100;
     [Export(PropertyHint.Range, "1, 50")]
-    private float bulletJumpStrength = 20;
+    private float bulletJumpStrength = 30;
     [Export(PropertyHint.Range, "0, 1")]
-    private float bulletJumpVerticalSkew = 0.5f;
+    private float bulletJumpVerticalSkew = 0.2f;
     [Export(PropertyHint.Range, "1, 10")]
     private float maxBulletJumps = 1;
     [Export(PropertyHint.Range, "10, 1000")]
-    private float bulletJumpDurationMS = 500;
+    private float bulletJumpDurationMS = 300;
     [Export(PropertyHint.Range, "1, 50")]
     private float slideBoostStrength = 10;
     [Export(PropertyHint.Range, "10, 1000")]
     private float slideBoostDelayMS = 500;
     [Export(PropertyHint.Range, "1000, 10000")]
-    private float glideDurationMS = 5000;
+    private float glideDurationMS = 2000;
+    [Export(PropertyHint.Range, "1, 50")]
+    private float dashStrength = 20;
+    [Export(PropertyHint.Range, "100, 2000")]
+    private float dashCooldownMS = 1000;
 
     // camera variables
     private Node3D cameraPivot;
@@ -61,6 +65,7 @@ public partial class PlayerCharacter : RigidBody3D
     private ulong glideTimer = 0; // duration of current glide (time since start)
     private ulong glideTotalTime = 0; // total glide time since last touching the ground
     private bool isGliding = false;
+    private bool canDash = true;
 
     // player variables
     private CollisionShape3D playerCollision;
@@ -158,6 +163,10 @@ public partial class PlayerCharacter : RigidBody3D
         }
 
         // dash
+        if (@event.IsActionPressed("dash"))
+        {
+            Dash();
+        }
 
         base._UnhandledKeyInput(@event);
     }
@@ -260,8 +269,8 @@ public partial class PlayerCharacter : RigidBody3D
             bulletJumpCount++;
 
             // starts a timer to remove the bullet jump gravity multiplier after the bullet jump duration elapses
-            SceneTreeTimer t = GetTree().CreateTimer(bulletJumpDurationMS / 1000f, true, true, false);
-            Callable c = Callable.From(() => EndBulletJump());
+            SceneTreeTimer t = GetTree().CreateTimer(bulletJumpDurationMS / 1000f, false, true, false);
+            Callable c = Callable.From(EndBulletJump);
             t.Connect("timeout", c);
 
         }
@@ -340,5 +349,38 @@ public partial class PlayerCharacter : RigidBody3D
         UpdateGravityScale();
         glideTotalTime += glideTimer;
         isGliding = false;
+    }
+
+    private void Dash()
+    {
+        if(!canDash) return; // returns if we can't dash
+
+        // get the direction we are trying to dash in (similar to movement in _PhysicsProcess)
+        Vector2 rawInput = Input.GetVector("move_left", "move_right", "move_forward", "move_backwards");
+        Vector3 forward = cameraPivot.GlobalBasis.Z;
+        Vector3 right = cameraPivot.GlobalBasis.X;
+        Vector3 dashDirection;
+        // if no direction is pressed, dash forward
+        if(rawInput.IsZeroApprox()) dashDirection = -1 * forward;
+        else dashDirection = forward * rawInput.Y + right * rawInput.X;
+        // made direction horizontal and normalized
+        dashDirection.Y = 0;
+        dashDirection = dashDirection.Normalized();
+
+        // dashing cancels momentum
+        LinearVelocity = Vector3.Zero;
+
+        // applies impulse in dash direction
+        ApplyCentralImpulse(dashDirection * dashStrength);
+
+        // starts dash cooldown
+        canDash = false;
+        SceneTreeTimer t = GetTree().CreateTimer(dashCooldownMS / 1000f, false, true, false);
+        Callable c = Callable.From(ResetDash);
+        t.Connect("timeout", c);
+    }
+    private void ResetDash()
+    {
+        canDash = true;
     }
 }

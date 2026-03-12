@@ -70,8 +70,9 @@ public partial class PlayerCharacter : RigidBody3D
     // player variables
     private CollisionShape3D playerCollision;
     private MeshInstance3D playerMesh;
-    private RayCast3D groundDetector;
+    private ShapeCast3D groundDetector;
     private bool onGround = false;
+    private float friction = 0;
     private Dictionary<string, float> gravityMultipliers = new Dictionary<string, float>();
 
     // gets called once when the node is ready (all children have been created), initialize stuff here
@@ -80,8 +81,9 @@ public partial class PlayerCharacter : RigidBody3D
         cameraPivot = GetNode<Node3D>("%CameraPivot");
         playerCollision = GetNode<CollisionShape3D>("%PlayerCollision");
         playerMesh = GetNode<MeshInstance3D>("%PlayerMesh");
-        groundDetector = GetNode<RayCast3D>("%GroundDetector");
+        groundDetector = GetNode<ShapeCast3D>("%GroundDetector");
         baseGravityScale = GravityScale;
+        friction = PhysicsMaterialOverride.Friction;
 
         base._Ready();
     }
@@ -293,8 +295,9 @@ public partial class PlayerCharacter : RigidBody3D
         playerMesh.Translate(Vector3.Down * 0.5f);
 
         EndBulletJump();
-        PhysicsMaterialOverride.Friction = 0.3f;
         isSliding = true;
+        friction = PhysicsMaterialOverride.Friction;
+        PhysicsMaterialOverride.Friction = 0.3f;
 
         // apply a boost if we're starting a slide on the ground and enough time has passed since the last one
         if(onGround && Time.GetTicksMsec() - lastSlideTime > slideBoostDelayMS)
@@ -318,8 +321,8 @@ public partial class PlayerCharacter : RigidBody3D
         playerCollision.Translate(Vector3.Up * 0.5f);
         playerMesh.Mesh = new CapsuleMesh();
         playerMesh.Translate(Vector3.Up * 0.5f);
-        PhysicsMaterialOverride.Friction = 1f;
         isSliding = false;
+        PhysicsMaterialOverride.Friction = friction;
     }
 
     private void StartGlide()
@@ -328,16 +331,14 @@ public partial class PlayerCharacter : RigidBody3D
         if(glideTotalTime > glideDurationMS) return; // can't glide if we're out of duration
         if (onGround) return; // can only glide in the air
 
-        // starting a glide cancels upward movement
+
         Vector3 velocity = LinearVelocity;
-        if(velocity.Y > 0)
-        {
-            velocity.Y = 0;
-            LinearVelocity = velocity;
-        }
+        if (glideTotalTime == 0) velocity.Y = 0; // if this is the first time we're starting the glide it cancels vertical movement
+        else velocity.Y = Math.Min(velocity.Y, 0); // else starting a glide cancels upward movement
+        LinearVelocity = velocity;
 
         glideStartTime = Time.GetTicksMsec();
-        gravityMultipliers.Add("glide", 0.05f);
+        gravityMultipliers.Add("glide", 0.1f);
         UpdateGravityScale();
         EndBulletJump();
         isGliding = true;
@@ -367,8 +368,10 @@ public partial class PlayerCharacter : RigidBody3D
         dashDirection.Y = 0;
         dashDirection = dashDirection.Normalized();
 
-        // dashing cancels momentum
-        LinearVelocity = Vector3.Zero;
+        // dashing dampens momentum
+        Vector3 velocity = LinearVelocity;
+        velocity = velocity / 2;
+        LinearVelocity = velocity;
 
         // applies impulse in dash direction
         ApplyCentralImpulse(dashDirection * dashStrength);

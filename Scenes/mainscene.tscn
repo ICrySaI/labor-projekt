@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cu3tvuefuil8u"]
 
-[ext_resource type="PackedScene" uid="uid://b3cwiwu66x3k" path="res://Player/player_character.tscn" id="1_5yt03"]
+[ext_resource type="PackedScene" uid="uid://b3cwiwu66x3k" path="res://Player/PlayerCharacter.tscn" id="1_5yt03"]
 [ext_resource type="Script" uid="uid://40jk8k1lhyev" path="res://Scenes/Mainscene.cs" id="1_a3v7h"]
 [ext_resource type="Script" uid="uid://dubnnd1xwsvpx" path="res://DebugPlayerVelocity.cs" id="2_tcjsh"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="4_hjw3j"]
@@ -12,8 +12,8 @@
 [ext_resource type="Material" uid="uid://c6rrof6timjki" path="res://FuncGodot_map/textures/SBS - Tiny Texture Pack 2 - 256x256/256x256/Dirt/Dirt_03-256x256.tres" id="10_3swae"]
 [ext_resource type="Material" uid="uid://bsklgjsch3h64" path="res://FuncGodot_map/textures/SBS - Tiny Texture Pack 2 - 256x256/256x256/Stone/Stone_11-256x256.tres" id="11_1bo1k"]
 [ext_resource type="Material" uid="uid://dcrbp7hjiv1i2" path="res://FuncGodot_map/textures/SBS - Tiny Texture Pack - 256x256/256x256/Bricks/Bricks_25-256x256.tres" id="13_76hng"]
-[ext_resource type="PackedScene" uid="uid://b330v1els5577" path="res://Enemies/BasicEnemy.tscn" id="14_dijpm"]
 [ext_resource type="Material" uid="uid://bgagwnjoa1ryd" path="res://FuncGodot_map/textures/SBS - Tiny Texture Pack 2 - 256x256/256x256/Elements/Elements_18-256x256.tres" id="14_hkskg"]
+[ext_resource type="PackedScene" uid="uid://dqp8q08jr1bx8" path="res://Enemies/RangedEnemy/RangedEnemy.tscn" id="15_xxieg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dijpm"]
 sky_top_color = Color(0.29074323, 0.70646656, 0.91616654, 1)
@@ -611,8 +611,7 @@ occluder = SubResource("ArrayOccluder3D_m7b6h")
 [node name="entity_9_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_9_func_geo" unique_id=2028028978]
 shape = SubResource("ConcavePolygonShape3D_t2n44")
 
-[node name="CharacterBody3D" parent="." unique_id=1956993762 instance=ExtResource("14_dijpm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.112051, 0, -34.350525)
-
-[node name="CharacterBody3D2" parent="." unique_id=73247186 instance=ExtResource("14_dijpm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.549547, 0, -27.710659)
+[node name="TestRangedUnit1" parent="." unique_id=890274416 instance=ExtResource("15_xxieg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.041634, 0, -19.416176)
+attackRange = 20.0
+preferredDistance = 10.0

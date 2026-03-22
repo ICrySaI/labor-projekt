@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://csur6gsbfu2qr"]
+
+[ext_resource type="PackedScene" uid="uid://b330v1els5577" path="res://Enemies/EnemyBase.tscn" id="1_tbi62"]
+[ext_resource type="Script" uid="uid://cwb1x3ouufgb3" path="res://Enemies/MeleeEnemy/MeleeEnemy.cs" id="2_jrjg0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrjg0"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="CharacterBody3D" unique_id=1956993762 instance=ExtResource("1_tbi62")]
+script = ExtResource("2_jrjg0")
+attackRange = 3.0
+
+[node name="MeshInstance3D" parent="." index="1" unique_id=379075159]
+surface_material_override/0 = SubResource("StandardMaterial3D_jrjg0")

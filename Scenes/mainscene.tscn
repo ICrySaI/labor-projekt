@@ -613,5 +613,3 @@ shape = SubResource("ConcavePolygonShape3D_t2n44")
 
 [node name="TestRangedUnit1" parent="." unique_id=890274416 instance=ExtResource("15_xxieg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.041634, 0, -19.416176)
-attackRange = 20.0
-preferredDistance = 10.0

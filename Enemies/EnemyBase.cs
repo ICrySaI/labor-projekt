@@ -22,13 +22,35 @@ If you override _Process or _PhysicsProcess always call the base function as wel
 */
 public partial class EnemyBase : CharacterBody3D
 {
+	// base stats
+	[ExportGroup("Base Stats")]
+	[Export]
+	protected float baseDamage = 10;
+	[Export]
+	protected float baseHealth = 100;
+	[Export(PropertyHint.Range, "1, 10, or_greater")]
+	public int Level {
+		get { return _level; }
+		set {
+			_level = Math.Max(1, value); // minimum level is 1
+			MaxHealth = baseHealth + ((_level - 1) * 0.1f * baseHealth);
+			AttackDamage = baseDamage + ((_level - 1) * 0.1f * baseDamage);
+		} }
+	private int _level = 1;
+
 	[Export(PropertyHint.Range, "5, 20")]
     protected float movementSpeed = 8.0f;
+
+	// current stats (scaled with level)
+	public float AttackDamage { get; private set; }
+	public float MaxHealth { get; private set; }
+
+	// other variables
+	[ExportGroup("Navigation Agent")]
 	[Export(PropertyHint.NodeType, "NavigationAgent3D")]
 	protected NavigationAgent3D navAgent;
 	[Export]
 	protected ulong attackCooldownMS = 2000;
-
 	protected Node3D currentTarget = null;
 	protected ulong lastAttackTimeMS = 0;
 

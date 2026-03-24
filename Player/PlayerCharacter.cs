@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class PlayerCharacter : RigidBody3D
 {
-    // export variables
+    //---------- Camera and movement control export variables ----------//
     [ExportGroup("Camera")]
     [Export(PropertyHint.Range, "1, 10")]
     private float mouseSensitivityX = 5;
@@ -49,7 +49,37 @@ public partial class PlayerCharacter : RigidBody3D
     [Export(PropertyHint.Range, "100, 2000")]
     private float dashCooldownMS = 1000;
 
+    //---------- stats ----------//
+    [ExportGroup("Stats")]
+    // health
+    [Export(PropertyHint.Range, "1, 1000, 10, or_greater")]
+    public float MaxHealth{
+        get { return _maxHealth; }
+        set {
+            float missingHealth = _maxHealth - CurrentHealth;
+            _maxHealth = Math.Max(1, value); // max health is at least 1
+            CurrentHealth = _maxHealth - missingHealth;
+    } }
+    private float _maxHealth = 100;
+
+    public float CurrentHealth {
+        get { return _currentHealth; }
+        set {
+            _currentHealth = Math.Clamp(value, 0, MaxHealth); // health is clamped between 0 and max health
+            EmitSignalHealthChanged(_currentHealth, MaxHealth);
+            if(_currentHealth <= 0) EmitSignalDied();
+    } }
+    private float _currentHealth = 100;
+
+    [Signal]
+    public delegate void HealthChangedEventHandler(float currentHealth, float maxHealth);
+    [Signal]
+    public delegate void DiedEventHandler();
+
+
     // camera variables
+    [ExportGroup("Nodes")]
+    [Export(PropertyHint.NodeType, "Node3D")]
     private Node3D cameraPivot;
     private float cameraRotationX = 0;
     private float cameraRotationY = 0;
@@ -68,22 +98,22 @@ public partial class PlayerCharacter : RigidBody3D
     private bool canDash = true;
 
     // player variables
+    [Export(PropertyHint.NodeType, "CollisionShape3D")]
     private CollisionShape3D playerCollision;
+    [Export(PropertyHint.NodeType, "MeshInstance3D")]
     private MeshInstance3D playerMesh;
+    [Export(PropertyHint.NodeType, "ShapeCast3D")]
     private ShapeCast3D groundDetector;
     private bool onGround = false;
-    private float friction = 0;
+    private float baseFriction;
     private Dictionary<string, float> gravityMultipliers = new Dictionary<string, float>();
 
     // gets called once when the node is ready (all children have been created), initialize stuff here
     public override void _Ready()
     {
-        cameraPivot = GetNode<Node3D>("%CameraPivot");
-        playerCollision = GetNode<CollisionShape3D>("%PlayerCollision");
-        playerMesh = GetNode<MeshInstance3D>("%PlayerMesh");
-        groundDetector = GetNode<ShapeCast3D>("%GroundDetector");
         baseGravityScale = GravityScale;
-        friction = PhysicsMaterialOverride.Friction;
+        baseFriction = PhysicsMaterialOverride.Friction;
+        CurrentHealth = MaxHealth;
 
         base._Ready();
     }
@@ -296,7 +326,6 @@ public partial class PlayerCharacter : RigidBody3D
 
         EndBulletJump();
         isSliding = true;
-        friction = PhysicsMaterialOverride.Friction;
         PhysicsMaterialOverride.Friction = 0.3f;
 
         // apply a boost if we're starting a slide on the ground and enough time has passed since the last one
@@ -322,7 +351,7 @@ public partial class PlayerCharacter : RigidBody3D
         playerMesh.Mesh = new CapsuleMesh();
         playerMesh.Translate(Vector3.Up * 0.5f);
         isSliding = false;
-        PhysicsMaterialOverride.Friction = friction;
+        PhysicsMaterialOverride.Friction = baseFriction;
     }
 
     private void StartGlide()

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
@@ -16,7 +17,7 @@ public partial class MeleeEnemy : EnemyBase
 		if(GlobalPosition.DistanceTo(currentTarget.GlobalPosition) > attackRange) return false;
 
 		// execute attack
-		AddChild(new MeleeEnemyAttack(this, attackRange));
+		AddChild(new MeleeEnemyAttack(this, attackRange, AttackDamage));
 		return true;
 	}
 }

@@ -9,6 +9,12 @@ albedo_color = Color(0.25, 0, 1, 1)
 [node name="CharacterBody3D" unique_id=1956993762 node_paths=PackedStringArray("head") instance=ExtResource("1_3ggy5")]
 script = ExtResource("2_6golm")
 head = NodePath("Head")
+attackRange = 30.0
+attackAngle = 45.0
+bulletCount = 5
+bulletRadius = 1.0
+bulletSpeed = 12.0
+preferredDistance = 10.0
 
 [node name="MeshInstance3D" parent="." index="1" unique_id=379075159]
 surface_material_override/0 = SubResource("StandardMaterial3D_6golm")

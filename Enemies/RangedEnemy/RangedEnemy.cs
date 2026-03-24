@@ -10,6 +10,15 @@ public partial class RangedEnemy : EnemyBase
 	private Node3D head;
 	[Export]
 	private float attackRange = 20.0f;
+	[Export(PropertyHint.Range, "0, 360")]
+	private float attackAngle { get { return float.RadiansToDegrees(attackAngleRadians); } set { attackAngleRadians = float.DegreesToRadians(value); } }
+	private float attackAngleRadians = float.DegreesToRadians(45.0f);
+	[Export(PropertyHint.Range, "1, 10")]
+	private int bulletCount = 5;
+	[Export(PropertyHint.Range, "0.1, 2")]
+	private float bulletRadius = 0.5f;
+	[Export(PropertyHint.Range, "5, 20")]
+	private float bulletSpeed = 10.0f;
 	[Export]
 	private float preferredDistance = 10.0f;
 
@@ -25,9 +34,9 @@ public partial class RangedEnemy : EnemyBase
 			// moves towards target if it's not visible or further away than preferred distance.
 			float distance = navAgent.DistanceToTarget();
 			if(distance > preferredDistance + 1 || !IsTargetVisible(currentTarget)) MoveTowardsTarget();
-			else if(distance < preferredDistance - 1) // if target is visible and closer than preferred distance, move directly away from target 
+			else if(distance < preferredDistance - 1)
 			{
-				
+				// if target is visible and closer than preferred distance, move directly away from target
 				Vector3 direction = GlobalPosition.DirectionTo(currentTarget.GlobalPosition) * -1;
 				MoveWithVelocity(direction * movementSpeed);
 			}
@@ -37,7 +46,21 @@ public partial class RangedEnemy : EnemyBase
 
 	protected override bool TryAttack()
 	{
-		return false;
+		// doesn't shoot if target is out of range or not visible
+		if(GlobalPosition.DistanceTo(currentTarget.GlobalPosition) > attackRange || !IsTargetVisible(currentTarget)) return false;
+
+		Vector3 targetDirection = GlobalPosition.DirectionTo(currentTarget.GlobalPosition);
+		Vector3 bulletDirection = targetDirection.Rotated(Vector3.Up, -attackAngleRadians / 2);
+		// creates bullets
+		for(int i = 0; i < bulletCount; i++)
+		{
+			// creates a new bullet
+			RangedAttackBullet bullet = new RangedAttackBullet(this, bulletRadius, bulletSpeed, bulletDirection, AttackDamage, attackRange){ Position = head.Position };
+        	AddChild(bullet);
+			// rotates bullet direction
+			bulletDirection = bulletDirection.Rotated(Vector3.Up, attackAngleRadians / (bulletCount - 1));
+		}
+		return true;
 	}
 
     protected override Node3D FindTarget()
@@ -102,7 +125,7 @@ public partial class RangedEnemy : EnemyBase
 		RayCast3D rayCast = new RayCast3D();
 		AddChild(rayCast);
 
-		rayCast.Position = head.Position;
+		rayCast.GlobalPosition = head.GlobalPosition;
 		rayCast.ExcludeParent = true;
 		rayCast.TargetPosition = rayCast.ToLocal(targetPosition);
 		rayCast.ForceRaycastUpdate();

@@ -5,30 +5,33 @@ using System.Diagnostics;
 
 public partial class MeleeEnemyAttack : MeshInstance3D
 {
-	private Timer timer = new Timer();
+	// attack stats
 	private Node source;
 	private float range;
-	private SphereMesh mesh = new SphereMesh();
+	private float damage;
+
+	private Timer timer;
+	private SphereMesh mesh;
 	private bool timerComplete = false;
 
-	public MeleeEnemyAttack(Node source, float range) : base()
+	public MeleeEnemyAttack(Node source, float range, float damage) : base()
 	{
 		this.source = source;
         this.range = range;
+		this.damage = damage;
 
-		timer.OneShot = true;
-		AddChild(timer);
+        timer = new Timer{ OneShot = true };
+        AddChild(timer);
 
-		mesh.Radius = 0;
-		mesh.Height = 0;
+        mesh = new SphereMesh{ Radius = 0, Height = 0 };
     }
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		timer.Connect("timeout", Callable.From(CompleteAttack));
+		timer.Timeout += CompleteAttack;
 		Mesh = mesh;
-		MaterialOverride = GD.Load<Material>("res://Enemies/MeleeEnemy/MeleeAttackProgressMaterial.tres");
+		MaterialOverride = GD.Load<Material>("res://Enemies/AttackWarningMaterial.tres");
 		timer.Start(0.5);
 	}
 
@@ -48,30 +51,27 @@ public partial class MeleeEnemyAttack : MeshInstance3D
 	public void CompleteAttack()
 	{
 		// removes itself from scene tree when done
-		if(timerComplete) GetParent().RemoveChild(this);
+		if(timerComplete) QueueFree();
 		else
 		{
 			timerComplete = true;
-			MaterialOverride = GD.Load<Material>("res://Enemies/MeleeEnemy/MeleeAttackActiveMaterial.tres");
+			MaterialOverride = GD.Load<Material>("res://Enemies/AttackActiveMaterial.tres");
 			timer.Start(0.1);
 
-			//---------- checks hits on players ----------
+            //---------- checks hits on players ----------
 
-			// creates shape cast
-			SphereShape3D hitShape = new SphereShape3D();
-			hitShape.Radius = range;
-			ShapeCast3D hitDetector = new ShapeCast3D();
-			hitDetector.Shape = hitShape;
-			hitDetector.TargetPosition = Vector3.Zero;
-			AddChild(hitDetector);
+            // creates shape cast
+            SphereShape3D hitShape = new SphereShape3D{ Radius = range };
+            ShapeCast3D hitDetector = new ShapeCast3D{ Shape = hitShape, TargetPosition = Vector3.Zero };
+            AddChild(hitDetector);
 			hitDetector.ForceShapecastUpdate();
 			// look for players within shape
 			for(int i = 0; i < hitDetector.GetCollisionCount(); i++)
 			{
 				GodotObject collider = hitDetector.GetCollider(i);
-				if(collider is Node3D && ((Node3D)collider).IsInGroup("Players"))
+				if(collider is PlayerCharacter && ((PlayerCharacter)collider).IsInGroup("Players"))
 				{
-					Debug.Print("player hit!");
+					((PlayerCharacter)collider).CurrentHealth -= damage;
 				}
 			}
 

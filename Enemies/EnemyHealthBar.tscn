@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://hfdjkq64o1me"]
+
+[ext_resource type="Script" uid="uid://cv1l175rv1xqy" path="res://Enemies/EnemyHealthBar.cs" id="1_pvwle"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ovit8"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xx2kh"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypcvb"]
+bg_color = Color(0.65882355, 0.18431373, 0.2, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="HealthBar" type="Sprite3D" unique_id=1492759905]
+billboard = 1
+texture_filter = 5
+texture = SubResource("ViewportTexture_ovit8")
+script = ExtResource("1_pvwle")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=875349624]
+transparent_bg = true
+size = Vector2i(200, 25)
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport" unique_id=97647042]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_xx2kh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ypcvb")
+value = 100.0
+show_percentage = false

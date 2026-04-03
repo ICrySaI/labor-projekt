@@ -43,7 +43,28 @@ public partial class EnemyBase : CharacterBody3D
 
 	// current stats (scaled with level)
 	public float AttackDamage { get; private set; }
-	public float MaxHealth { get; private set; }
+	public float MaxHealth{
+        get { return _maxHealth; }
+        set {
+            float missingHealth = _maxHealth - CurrentHealth;
+            _maxHealth = Math.Max(1, value); // max health is at least 1
+            CurrentHealth = _maxHealth - missingHealth;
+    } }
+    private float _maxHealth = 100;
+
+    public float CurrentHealth {
+        get { return _currentHealth; }
+        set {
+            _currentHealth = Math.Clamp(value, 0, MaxHealth); // health is clamped between 0 and max health
+            EmitSignalHealthChanged(_currentHealth, MaxHealth);
+            if(_currentHealth <= 0) EmitSignalDied();
+    } }
+    private float _currentHealth = 100;
+
+    [Signal]
+    public delegate void HealthChangedEventHandler(float currentHealth, float maxHealth);
+    [Signal]
+    public delegate void DiedEventHandler();
 
 	// other variables
 	[ExportGroup("Navigation Agent")]

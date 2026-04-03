@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b330v1els5577"]
 
 [ext_resource type="Script" uid="uid://wtfy2dhqcoxm" path="res://Enemies/EnemyBase.cs" id="1_x4l1i"]
+[ext_resource type="PackedScene" uid="uid://hfdjkq64o1me" path="res://Enemies/EnemyHealthBar.tscn" id="2_6ijjn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4mekk"]
 
@@ -11,6 +12,9 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4l1i"]
 albedo_texture = SubResource("PlaceholderTexture2D_bq4py")
 texture_filter = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6ijjn"]
+viewport_path = NodePath("SubViewport")
 
 [node name="EnemyBase" type="CharacterBody3D" unique_id=1956993762 node_paths=PackedStringArray("navAgent") groups=["Enemies"]]
 script = ExtResource("1_x4l1i")
@@ -28,3 +32,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_x4l1i")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=585563210]
 path_desired_distance = 0.5
 target_desired_distance = 1.5
+
+[node name="HealthBar" parent="." unique_id=1492759905 node_paths=PackedStringArray("enemy") instance=ExtResource("2_6ijjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+texture = SubResource("ViewportTexture_6ijjn")
+enemy = NodePath("..")

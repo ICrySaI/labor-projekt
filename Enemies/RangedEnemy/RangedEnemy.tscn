@@ -6,7 +6,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6golm"]
 albedo_color = Color(0.25, 0, 1, 1)
 
-[node name="CharacterBody3D" unique_id=1956993762 node_paths=PackedStringArray("head") instance=ExtResource("1_3ggy5")]
+[node name="RangedEnemy" unique_id=1956993762 node_paths=PackedStringArray("head") instance=ExtResource("1_3ggy5")]
 script = ExtResource("2_6golm")
 head = NodePath("Head")
 attackRange = 30.0

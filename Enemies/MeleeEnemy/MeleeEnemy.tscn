@@ -6,7 +6,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrjg0"]
 albedo_color = Color(1, 0, 0, 1)
 
-[node name="CharacterBody3D" unique_id=1956993762 instance=ExtResource("1_tbi62")]
+[node name="MeleeEnemy" unique_id=1956993762 instance=ExtResource("1_tbi62")]
 script = ExtResource("2_jrjg0")
 attackRange = 3.0
 

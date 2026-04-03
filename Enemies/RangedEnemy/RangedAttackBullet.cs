@@ -36,15 +36,19 @@ public partial class RangedAttackBullet : MeshInstance3D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		// checks if we hit something
+		// loops through all the collisions
 		for(int i = 0; i < hitDetector.GetCollisionCount(); i++)
 		{
-			GodotObject collider = hitDetector.GetCollider(i);
-			if(collider is PlayerCharacter && ((PlayerCharacter)collider).IsInGroup("Players"))
+			Node collider = (Node)hitDetector.GetCollider(i); // not sure this cast is safe but I don't think it can collide with anything that's not a node
+
+			if (!collider.IsInGroup("Enemies")) //colliding with an enemy doesn't do anything
 			{
-				((PlayerCharacter)collider).CurrentHealth -= damage;
+				if(collider is PlayerCharacter && collider.IsInGroup("Players"))
+				{
+					((PlayerCharacter)collider).CurrentHealth -= damage;
+				}
+				QueueFree(); // if we hit something (that isn't an enemy), queue the bullet to be removed		
 			}
-			QueueFree(); // if we hit something, queue the bullet to be removed
 		}
 
 		// moves the bullet

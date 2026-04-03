@@ -23,6 +23,11 @@ project/assembly_name="LaborProjekt"
 
 enabled=PackedStringArray("res://addons/func_godot/plugin.cfg")
 
+[global_group]
+
+Players=""
+Enemies=""
+
 [input]
 
 move_forward={

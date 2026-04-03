@@ -12,7 +12,7 @@
 albedo_texture = SubResource("PlaceholderTexture2D_bq4py")
 texture_filter = 2
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1956993762 node_paths=PackedStringArray("navAgent")]
+[node name="EnemyBase" type="CharacterBody3D" unique_id=1956993762 node_paths=PackedStringArray("navAgent") groups=["Enemies"]]
 script = ExtResource("1_x4l1i")
 navAgent = NodePath("NavigationAgent3D")
 

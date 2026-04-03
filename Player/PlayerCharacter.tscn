@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b3cwiwu66x3k"]
 
 [ext_resource type="Script" uid="uid://dplh7auo5u0mh" path="res://Player/PlayerCharacter.cs" id="1_dfy8k"]
-[ext_resource type="Script" uid="uid://dqlrg3a6ymbmc" path="res://Player/HealthBar.cs" id="2_k87gr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dfy8k"]
 friction = 0.5
@@ -15,21 +14,7 @@ radius = 0.25
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dfy8k"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k87gr"]
-bg_color = Color(0.19, 0.19, 0.19, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pj2h1"]
-bg_color = Color(0.66, 0.18479998, 0.20063998, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[node name="PlayerCharacter" type="RigidBody3D" unique_id=506710821 node_paths=PackedStringArray("cameraPivot", "playerCollision", "playerMesh", "groundDetector")]
+[node name="PlayerCharacter" type="RigidBody3D" unique_id=506710821 node_paths=PackedStringArray("cameraPivot", "playerCollision", "playerMesh", "groundDetector") groups=["Players"]]
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -72,20 +57,3 @@ fov = 90.0
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_dfy8k")
 target_position = Vector3(0, -0.1, 0)
-
-[node name="HealthBar" type="ProgressBar" parent="." unique_id=283823857 node_paths=PackedStringArray("player")]
-custom_minimum_size = Vector2(300, 25)
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.95
-anchor_right = 0.5
-anchor_bottom = 0.95
-offset_left = -150.0
-offset_top = -25.0
-offset_right = 150.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_k87gr")
-theme_override_styles/fill = SubResource("StyleBoxFlat_pj2h1")
-script = ExtResource("2_k87gr")
-player = NodePath("..")

@@ -37,3 +37,5 @@ target_desired_distance = 1.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 texture = SubResource("ViewportTexture_6ijjn")
 enemy = NodePath("..")
+
+[connection signal="HealthChanged" from="." to="HealthBar" method="HealthChanged"]

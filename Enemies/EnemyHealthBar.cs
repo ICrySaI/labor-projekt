@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class EnemyHealthBar : Sprite3D
 {
@@ -14,11 +15,11 @@ public partial class EnemyHealthBar : Sprite3D
 		healthbar = (ProgressBar)GetNode("SubViewport/ProgressBar");
 		healthbar.MaxValue = enemy.MaxHealth;
 		healthbar.Value = enemy.CurrentHealth;
-		enemy.HealthChanged += HealthChanged;
 	}
 
 	private void HealthChanged(float current, float max)
 	{
+		if(healthbar == null) return;
 		healthbar.MaxValue = max;
 		healthbar.Value = current;
 	}

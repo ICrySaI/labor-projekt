@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://40jk8k1lhyev" path="res://Scenes/Mainscene.cs" id="1_a3v7h"]
 [ext_resource type="Script" uid="uid://dubnnd1xwsvpx" path="res://DebugPlayerVelocity.cs" id="2_tcjsh"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="4_hjw3j"]
-[ext_resource type="Script" uid="uid://bj10w3rjyj2hm" path="res://Scenes/HealthBar.cs" id="4_tf7l5"]
+[ext_resource type="Script" uid="uid://bj10w3rjyj2hm" path="res://Player/HealthBar.cs" id="4_tf7l5"]
 [ext_resource type="PackedScene" uid="uid://dupyrssyw8jp5" path="res://Abilities/Inventory/Inventory.tscn" id="5_bfwm2"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="5_c5s60"]
 [ext_resource type="Material" uid="uid://blwgyt5q0t6wi" path="res://FuncGodot_map/textures/SBS - Tiny Texture Pack - 256x256/256x256/Grass/Grass_21-256x256.tres" id="6_dijpm"]
@@ -519,6 +519,7 @@ script = ExtResource("4_tf7l5")
 player = NodePath("..")
 
 [node name="Inventory" parent="PlayerCharacter" unique_id=2002805520 instance=ExtResource("5_bfwm2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=567342299]
 navigation_mesh = SubResource("NavigationMesh_dijpm")

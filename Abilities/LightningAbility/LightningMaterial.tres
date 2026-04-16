@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bdgqlyw4mp8te"]
+
+[ext_resource type="Texture2D" uid="uid://dg3v25r5bpcrl" path="res://VFX_textures/brackeys_vfx_bundle/particles/alpha/spark_05_a.png" id="1_lymah"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_lymah")
+emission_enabled = true
+emission = Color(0.5, 1, 1, 1)

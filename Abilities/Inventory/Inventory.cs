@@ -15,7 +15,7 @@ public partial class Inventory : Node3D
 	public override void _Ready()
 	{
 		// ------testing abilities------ //
-		AbilityBase test1 = new AbilityBase(){CooldownMS = 1000};
+		LightningAbility test1 = new LightningAbility(){CooldownMS = 1000, chainRange = 30, damage = 10};
 		AbilityBase test2 = new AbilityBase(){CooldownMS = 3000};
 		AbilityBase test3 = new AbilityBase(){CooldownMS = 4000};
 		addAbility(test1);

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://8pgqwc55kk3v"]
+
+[ext_resource type="PackedScene" uid="uid://dsw24lp8jibct" path="res://Abilities/AbilityBase.tscn" id="1_niloc"]
+[ext_resource type="Script" uid="uid://b3r05jwxx4pgt" path="res://Abilities/LightningAbility/LightningAbility.cs" id="2_s36fj"]
+[ext_resource type="Texture2D" uid="uid://dg3v25r5bpcrl" path="res://VFX_textures/brackeys_vfx_bundle/particles/alpha/spark_05_a.png" id="3_s36fj"]
+
+[node name="LightningAbility" unique_id=245157637 instance=ExtResource("1_niloc")]
+script = ExtResource("2_s36fj")
+chainAmount = 3
+chainRange = 30.0
+damage = 10.0
+IconTexture = ExtResource("3_s36fj")
+AbilityName = "Chain Lightning"
+AbilityDescription = "A lightningstrike that chains between multiple enemies"
+CooldownMS = 2000

@@ -55,7 +55,7 @@ public partial class RangedEnemy : EnemyBase
 		for(int i = 0; i < bulletCount; i++)
 		{
 			// creates a new bullet
-			RangedAttackBullet bullet = new RangedAttackBullet(this, bulletRadius, bulletSpeed, bulletDirection, AttackDamage, attackRange){ Position = head.Position };
+			RangedAttackBullet bullet = new RangedAttackBullet(this, bulletRadius, bulletSpeed, bulletDirection, AttackDamage, attackRange){ Position = head.GlobalPosition };
         	AddChild(bullet);
 			// rotates bullet direction
 			bulletDirection = bulletDirection.Rotated(Vector3.Up, attackAngleRadians / (bulletCount - 1));

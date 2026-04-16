@@ -75,6 +75,10 @@ public partial class EnemyBase : CharacterBody3D
 	protected Node3D currentTarget = null;
 	protected ulong lastAttackTimeMS = 0;
 
+	[ExportGroup("Utility")]
+	[Export(PropertyHint.NodeType, "Node3D")]
+	public Node3D CenterOfMass { get; private set; }
+
     public override void _Ready()
     {
 		navAgent.VelocityComputed += MoveWithVelocity;

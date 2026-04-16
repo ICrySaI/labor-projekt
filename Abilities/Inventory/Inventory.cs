@@ -14,8 +14,9 @@ public partial class Inventory : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		PackedScene lightningAbilityScene = GD.Load<PackedScene>("res://Abilities/LightningAbility/LightningAbility.tscn");
 		// ------testing abilities------ //
-		LightningAbility test1 = new LightningAbility(){CooldownMS = 1000, chainRange = 30, damage = 10};
+		LightningAbility test1 = lightningAbilityScene.Instantiate<LightningAbility>();
 		AbilityBase test2 = new AbilityBase(){CooldownMS = 3000};
 		AbilityBase test3 = new AbilityBase(){CooldownMS = 4000};
 		addAbility(test1);
@@ -35,7 +36,7 @@ public partial class Inventory : Node3D
 
 			if(timeSinceFired > a.ability.CooldownMS)
 			{
-				a.ability.Fire(GlobalPosition); // fires the ability at it's own position
+				a.ability.Fire(); // fires the ability
 			}
 		}
 	}
@@ -57,7 +58,7 @@ public partial class Inventory : Node3D
 	// remove the ability from the inventory, this removes in from the scene tree along with it's corresponding icon
 	public void removeAbility(AbilityBase ability)
 	{
-		//finds the corresponding icon
+		//finds the corresponding entry in the list
 		var a = abilities.SingleOrDefault(a => a.ability == ability);
 		if(a == default) return; // returns if there's no such ability in the list
 

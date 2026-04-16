@@ -12,7 +12,7 @@ public partial class RangedAttackBullet : MeshInstance3D
 	private float range;
 	private Vector3 startPostition;
 
-	public RangedAttackBullet(Node source, float radius, float speed, Vector3 direction, float damage, float range) : base()
+	public RangedAttackBullet(Node3D source, float radius, float speed, Vector3 direction, float damage, float range) : base()
 	{
 		this.source = source;
 		mesh = new SphereMesh{ Radius = radius, Height = radius * 2 };
@@ -23,6 +23,7 @@ public partial class RangedAttackBullet : MeshInstance3D
 		this.direction = direction.IsNormalized() ? direction : direction.Normalized();
 		this.damage = damage;
 		this.range = range;
+		TopLevel = true;
 	}
 
 	// Called when the node enters the scene tree for the first time.
@@ -30,8 +31,8 @@ public partial class RangedAttackBullet : MeshInstance3D
 	{
 		Mesh = mesh;
 		MaterialOverride = GD.Load<Material>("res://Enemies/AttackActiveMaterial.tres");
-		startPostition = GlobalPosition;
         AddChild(hitDetector);
+		startPostition = GlobalPosition;
 	}
 
 	public override void _PhysicsProcess(double delta)

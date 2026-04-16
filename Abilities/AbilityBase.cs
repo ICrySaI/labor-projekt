@@ -2,8 +2,14 @@ using Godot;
 using System;
 using System.Runtime.CompilerServices;
 
-public partial class AbilityBase : Node
+public partial class AbilityBase : Node3D
 {
+	[Export]
+	public Texture2D IconTexture { get; private set; }
+	[Export]
+	public string AbilityName { get; private set; }
+	[Export(PropertyHint.MultilineText)]
+	public string AbilityDescription { get; private set; }
 	[Export]
 	public int CooldownMS {
 		get { return _cooldownMS; }
@@ -18,13 +24,8 @@ public partial class AbilityBase : Node
 
 	public ulong lastFired { get; private set; } = 0;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
 	// fires the ability at a specific position
-	public virtual void Fire(Vector3 at)
+	public virtual void Fire()
 	{
 		lastFired = Time.GetTicksMsec();
 	}

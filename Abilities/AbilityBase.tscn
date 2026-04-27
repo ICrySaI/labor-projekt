@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://dsw24lp8jibct"]
-
-[ext_resource type="Script" uid="uid://c0mo8dwbm56l1" path="res://Abilities/AbilityBase.cs" id="1_ww4gs"]
-
-[node name="AbilityBase" type="Node3D" unique_id=185320907]
-script = ExtResource("1_ww4gs")
-AbilityName = "Ability Base"
-AbilityDescription = "The base ability class for other abilities to inherit from"

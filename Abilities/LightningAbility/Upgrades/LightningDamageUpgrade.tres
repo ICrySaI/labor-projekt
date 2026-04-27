@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://cwvu82l2dj1at"]
+
+[ext_resource type="Script" uid="uid://rmqs7phjg4ch" path="res://Abilities/LightningAbility/Upgrades/LightningDamageUpgrade.cs" id="1_dmuod"]
+
+[resource]
+script = ExtResource("1_dmuod")
+UpgradeName = "High Voltage"
+UpgradeDescription = "Increases the damage of Chain Lightning by 30"

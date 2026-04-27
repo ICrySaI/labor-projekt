@@ -1,15 +1,14 @@
 using Godot;
 using System;
 
-public partial class AbilityIcon : ProgressBar
+public partial class AbilityIconUI : ProgressBar
 {
 	private AbilityBase ability;
 
-	public AbilityIcon(AbilityBase ability)
+	public AbilityIconUI(AbilityBase ability)
 	{
 		this.ability = ability;
 		MaxValue = ability.CooldownMS;
-		ability.CooldownChanged += CooldownChanged;
 		MinValue = 0;
 
 		// set the visuals of the ability icon

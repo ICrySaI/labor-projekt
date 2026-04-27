@@ -518,8 +518,9 @@ value = 100.0
 script = ExtResource("4_tf7l5")
 player = NodePath("..")
 
-[node name="Inventory" parent="PlayerCharacter" unique_id=2002805520 instance=ExtResource("5_bfwm2")]
+[node name="Inventory" parent="PlayerCharacter" unique_id=2002805520 node_paths=PackedStringArray("player") instance=ExtResource("5_bfwm2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+player = NodePath("..")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=567342299]
 navigation_mesh = SubResource("NavigationMesh_dijpm")

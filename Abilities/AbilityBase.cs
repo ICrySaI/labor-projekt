@@ -4,16 +4,16 @@ using System.Diagnostics;
 using System.Runtime.InteropServices.Marshalling;
 using Godot;
 
-public abstract partial class AbilityBase : Node3D
+public abstract partial class AbilityBase : Node3D, IInventoryItem
 {
 	[Export]
-	public Texture2D IconTexture { get; private set; }
+	public Texture2D ItemIcon { get; set; }
 
 	[Export]
-	public string AbilityName { get; private set; }
+	public string ItemName { get; set; }
 
 	[Export(PropertyHint.MultilineText)]
-	public string AbilityDescription { get; private set; }
+	public string ItemDescription { get; set; }
 
 	[Export]
 	public int baseCooldownMS { get; private set; } = 1000;

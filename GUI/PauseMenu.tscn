@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://crcc4c0hutifk"]
+
+[ext_resource type="Script" uid="uid://2xpkvhob0b6s" path="res://GUI/PauseMenu.cs" id="1_exy6n"]
+[ext_resource type="Theme" uid="uid://ciodp1p3ksd0f" path="res://GUI/GUITheme.tres" id="2_41xcd"]
+[ext_resource type="PackedScene" uid="uid://1evlh7yusan8" path="res://GUI/InventoryDisplay.tscn" id="3_ho0dg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exy6n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_exy6n"]
+font_size = 42
+
+[sub_resource type="LabelSettings" id="LabelSettings_41xcd"]
+font_size = 32
+
+[node name="PauseMenu" type="Control" unique_id=1819013192]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_exy6n")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1124716390]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.05
+anchor_right = 0.7
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_41xcd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2006206390]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TopMargin" type="Panel" parent="PanelContainer/VBoxContainer" unique_id=243351508]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_exy6n")
+
+[node name="GamePausedLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1704810384]
+layout_mode = 2
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_exy6n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer" unique_id=446800192]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_41xcd")
+text = "Resume"
+
+[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1582894169]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_41xcd")
+text = "Quit"
+
+[node name="InventoryLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1646360940]
+layout_mode = 2
+text = "Inventory:"
+label_settings = SubResource("LabelSettings_41xcd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1747771909]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="InventoryDisplay" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=994947193 instance=ExtResource("3_ho0dg")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="OnResumePressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="OnQuitPressed"]

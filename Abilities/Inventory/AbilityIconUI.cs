@@ -22,11 +22,11 @@ public partial class AbilityIconUI : ProgressBar
 		AddThemeStyleboxOverride("fill", fillStyle);
 
 		// if the ability has an icon texture assigned, set it as the progress bar background, else set a base color
-		if(ability.IconTexture != null)
+		if(ability.ItemIcon != null)
 		{
             StyleBoxTexture backgroundStyle = new StyleBoxTexture
             {
-                Texture = ability.IconTexture
+                Texture = ability.ItemIcon
             };
             AddThemeStyleboxOverride("background", backgroundStyle);
 		}

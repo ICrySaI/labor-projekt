@@ -15,10 +15,14 @@ public partial class Mainscene : Node3D
 
 	public override void _Input(InputEvent @event)
     {
-        // capture mouse when game window is clicked, release with escape
-        if(@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left) Input.MouseMode = Input.MouseModeEnum.Captured;
-        if(@event.IsActionPressed("ui_cancel")) Input.MouseMode = Input.MouseModeEnum.Visible;
-
+        // capture mouse when game window is clicked and the game is not paused
+        if(@event is InputEventMouseButton mouseEvent)
+		{
+			if(mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left && !GetTree().Paused)
+			{
+				Input.MouseMode = Input.MouseModeEnum.Captured;
+			}
+		}
 
         base._Input(@event);
     }

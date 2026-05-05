@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_dmuod")
-UpgradeName = "High Voltage"
-UpgradeDescription = "Increases the damage of Chain Lightning by 30"
+damageIncrease = 30.0
+ItemName = "High Voltage"
+ItemDescription = "Increases the damage of chain lightning by 30"

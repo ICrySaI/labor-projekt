@@ -6,6 +6,6 @@
 [node name="LightningAbility" type="Node3D" unique_id=245157637]
 script = ExtResource("2_s36fj")
 baseChainRange = 30.0
-IconTexture = ExtResource("3_s36fj")
-AbilityName = "Chain Lightning"
-AbilityDescription = "A lightningstrike that chains between multiple enemies"
+ItemIcon = ExtResource("3_s36fj")
+ItemName = "Chain Lightning"
+ItemDescription = "A lightningbolt that chains to nearby enemies"

@@ -4,11 +4,14 @@ using System.Collections.Generic;
 
 public partial class LightningDamageUpgrade : UpgradeBase
 {
+    [Export]
+    private float damageIncrease;
+
     public override void ApplyAdditiveUpgrades(AbilityBase a)
     {
         if(a is LightningAbility)
         {
-            ((LightningAbility)a).Damage += 30;
+            ((LightningAbility)a).Damage += damageIncrease;
         }
     }
 

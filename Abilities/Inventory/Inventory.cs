@@ -70,4 +70,20 @@ public partial class Inventory : Node3D
 		a.icon.QueueFree();
 		
 	}
+
+	// return a list of all items in the inventory, this includes abilities and upgrades on those abilities
+	public List<IInventoryItem> GetItems()
+	{
+		List<IInventoryItem> list = new List<IInventoryItem>();
+		foreach (var a in abilities)
+		{
+			AbilityBase ability = a.ability;
+			list.Add(ability);
+			foreach (UpgradeBase upgrade in ability.upgrades)
+			{
+				list.Add(upgrade);
+			}
+		}
+		return list;
+	}
 }

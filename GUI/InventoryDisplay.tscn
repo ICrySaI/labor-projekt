@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://1evlh7yusan8"]
+
+[ext_resource type="PackedScene" uid="uid://b8ua8ycx7u1f7" path="res://GUI/ItemDisplay.tscn" id="1_6gq8c"]
+[ext_resource type="Script" uid="uid://cla15r2hohyvo" path="res://GUI/InventoryDisplay.cs" id="1_rfc42"]
+
+[node name="InventoryDisplay" type="Control" unique_id=994947193]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rfc42")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=256447699]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=815856562]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Control" parent="ScrollContainer/VBoxContainer" unique_id=1795105271 instance=ExtResource("1_6gq8c")]
+layout_mode = 2
+
+[node name="Control2" parent="ScrollContainer/VBoxContainer" unique_id=1196385052 instance=ExtResource("1_6gq8c")]
+layout_mode = 2

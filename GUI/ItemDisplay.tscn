@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://b8ua8ycx7u1f7"]
+
+[ext_resource type="Script" uid="uid://c66cerlf7dsiw" path="res://GUI/ItemDisplay.cs" id="1_cld55"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cld55"]
+font_size = 24
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cld55"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ug12f"]
+font_size = 18
+
+[node name="Control" type="Control" unique_id=1795105271]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_cld55")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2002171438]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1246152953]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Name" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1696115551]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Placeholder name"
+label_settings = SubResource("LabelSettings_cld55")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=325135869]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_cld55")
+expand_mode = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=574640421]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=2138890521]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/ScrollContainer/HBoxContainer" unique_id=8062051]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Description" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer" unique_id=260867932]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Placeholder description"
+label_settings = SubResource("LabelSettings_ug12f")
+autowrap_mode = 2

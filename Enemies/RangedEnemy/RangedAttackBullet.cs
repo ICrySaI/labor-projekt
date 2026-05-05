@@ -42,7 +42,7 @@ public partial class RangedAttackBullet : MeshInstance3D
 		{
 			Node collider = (Node)hitDetector.GetCollider(i); // not sure this cast is safe but I don't think it can collide with anything that's not a node
 
-			if (!collider.IsInGroup("Enemies")) //colliding with an enemy doesn't do anything
+			if (IsInstanceValid(collider) && !collider.IsInGroup("Enemies")) // only does something if the collider is valid and isn't an enemy
 			{
 				if(collider is PlayerCharacter && collider.IsInGroup("Players"))
 				{

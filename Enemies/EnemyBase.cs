@@ -57,7 +57,7 @@ public partial class EnemyBase : CharacterBody3D
         set {
             _currentHealth = Math.Clamp(value, 0, MaxHealth); // health is clamped between 0 and max health
             EmitSignalHealthChanged(_currentHealth, MaxHealth);
-            if(_currentHealth <= 0) EmitSignalDied();
+            if(_currentHealth <= 0) { EmitSignalDied(); QueueFree(); }
     } }
     private float _currentHealth = 100;
 
@@ -207,6 +207,7 @@ public partial class EnemyBase : CharacterBody3D
 		else return closest;
 	}
 
+	// tries to attack, returns true if attack successfully fired, false if not
 	protected virtual bool TryAttack()
 	{
 		return false;

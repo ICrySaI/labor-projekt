@@ -46,6 +46,8 @@ public partial class RangedEnemy : EnemyBase
 
 	protected override bool TryAttack()
 	{
+		if(!IsInstanceValid(currentTarget)) return false; // if there's no valid target it can't attack
+
 		// doesn't shoot if target is out of range or not visible
 		if(GlobalPosition.DistanceTo(currentTarget.GlobalPosition) > attackRange || !IsTargetVisible(currentTarget)) return false;
 

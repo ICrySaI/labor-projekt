@@ -10,9 +10,11 @@ public partial class LightningVfx : Node3D
 	private AnimationPlayer animationPlayer;
 
 	Node3D from;
+	Vector3 startPoint;
 	Node3D to;
+	Vector3 endPoint;
 
-	// triggers the effect between two nodes, the effect is automatically deleted after it finishes or if one of the endpoints are removed
+	// triggers the effect between two nodes, the effect is automatically deleted after it finishes
 	public void TriggerEffect(Node3D from, Node3D to)
 	{
 		this.from = from;
@@ -28,16 +30,18 @@ public partial class LightningVfx : Node3D
         base._Process(delta);
     }
 
+	// sets the start and endpoints of the effect to the postitions of the from and to nodes if they're still valid
 	private void setPosition()
 	{
-		if(from != null && to != null)
+		if(IsInstanceValid(from))
 		{
-			LookAtFromPosition(from.GlobalPosition, to.GlobalPosition, Vector3.Up);
-			Scale = new Vector3(1, 1, from.GlobalPosition.DistanceTo(to.GlobalPosition));
+			startPoint = from.GlobalPosition;
 		}
-		else
+		if (IsInstanceValid(to))
 		{
-			QueueFree();
+			endPoint = to.GlobalPosition;
 		}
+		LookAtFromPosition(startPoint, endPoint, Vector3.Up);
+		Scale = new Vector3(1, 1, startPoint.DistanceTo(endPoint));
 	}
 }

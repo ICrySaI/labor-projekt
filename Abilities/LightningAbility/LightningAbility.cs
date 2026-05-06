@@ -39,7 +39,7 @@ public partial class LightningAbility : AbilityBase
 		// damage all enemies hit
 		foreach (EnemyBase enemy in enemiesHit)
 		{
-			enemy.CurrentHealth -= Damage;
+			enemy.Hit(Damage, source);
 		}
 
 		OnAbilityFired(enemiesHit, source);

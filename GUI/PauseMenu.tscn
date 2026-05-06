@@ -6,12 +6,6 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exy6n"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_exy6n"]
-font_size = 42
-
-[sub_resource type="LabelSettings" id="LabelSettings_41xcd"]
-font_size = 32
-
 [node name="PauseMenu" type="Control" unique_id=1819013192]
 process_mode = 3
 layout_mode = 3
@@ -46,8 +40,9 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_exy6n")
 
 [node name="GamePausedLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1704810384]
 layout_mode = 2
+theme = ExtResource("2_41xcd")
+theme_type_variation = &"HeaderLarge"
 text = "Game Paused"
-label_settings = SubResource("LabelSettings_exy6n")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -67,8 +62,9 @@ text = "Quit"
 
 [node name="InventoryLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1646360940]
 layout_mode = 2
+theme = ExtResource("2_41xcd")
+theme_type_variation = &"HeaderMedium"
 text = "Inventory:"
-label_settings = SubResource("LabelSettings_41xcd")
 horizontal_alignment = 1
 vertical_alignment = 1
 

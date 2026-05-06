@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="LaborProjekt"
-run/main_scene="res://Scenes/mainscene.tscn"
+run/main_scene="res://Scenes/GameplayScene/GameInstance.tscn"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Globals="*uid://bc4cyhmcmsdyi"
+SignalBus="*uid://kwnbft5mp4w8"
 
 [dotnet]
 

@@ -1,5 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://ciodp1p3ksd0f"]
 
+[ext_resource type="FontFile" uid="uid://djo0wa8bmit6o" path="res://Resources/fonts/Fugaz_One/FugazOne-Regular.ttf" id="1_5ypoe"]
+[ext_resource type="FontFile" uid="uid://csxqstn4qvru" path="res://Resources/fonts/Edu_NSW_ACT_Foundation/EduNSWACTFoundation-VariableFont_wght.ttf" id="2_hito2"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ypoe"]
 bg_color = Color(0.20426214, 0.32441038, 0.48434788, 1)
 border_color = Color(0.30936152, 0.51916647, 0.7560043, 1)
@@ -52,6 +55,23 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwblx"]
+bg_color = Color(0.577998, 0.1508457, 0.0930331, 1)
+border_width_left = 10
+border_width_top = 10
+border_color = Color(0.756137, 0.21400574, 0.1436905, 1)
+border_blend = true
+corner_radius_top_left = 25
+corner_radius_top_right = 10
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 10
+
+[sub_resource type="FontVariation" id="FontVariation_hito2"]
+base_font = ExtResource("2_hito2")
+variation_opentype = {
+2003265652: 600
+}
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcfut"]
 bg_color = Color(0.14901961, 0.14901961, 0.14901961, 0.5019608)
 border_width_left = 10
@@ -63,15 +83,56 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 10
 
+[sub_resource type="FontVariation" id="FontVariation_ylmot"]
+base_font = ExtResource("2_hito2")
+variation_opentype = {
+2003265652: 600
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hoa8"]
+bg_color = Color(0.14901961, 0.14901961, 0.14901961, 0.5019608)
+border_width_left = 10
+border_width_top = 10
+border_color = Color(0.05, 0.05, 0.05, 0.5019608)
+border_blend = true
+corner_radius_top_left = 25
+corner_radius_top_right = 10
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k8hgw"]
+border_width_left = 10
+border_width_top = 10
+border_blend = true
+corner_radius_top_left = 25
+corner_radius_top_right = 10
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 10
+
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_pressed_color = Color(0.8, 0.8, 0.8, 1)
 Button/colors/font_pressed_color = Color(0.8, 0.8, 0.8, 1)
 Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_5ypoe")
 Button/styles/disabled = SubResource("StyleBoxFlat_5ypoe")
 Button/styles/hover = SubResource("StyleBoxFlat_hito2")
 Button/styles/hover_pressed = SubResource("StyleBoxFlat_4cgdx")
 Button/styles/normal = SubResource("StyleBoxFlat_lxkug")
 Button/styles/pressed = SubResource("StyleBoxFlat_ylmot")
+HeaderLarge/font_sizes/font_size = 42
+HeaderLarge/fonts/font = ExtResource("1_5ypoe")
+HeaderMedium/font_sizes/font_size = 34
+HeaderMedium/fonts/font = ExtResource("1_5ypoe")
+HeaderSmall/font_sizes/font_size = 24
+HeaderSmall/fonts/font = ExtResource("1_5ypoe")
+HealthBar/base_type = &"ProgressBar"
+HealthBar/styles/fill = SubResource("StyleBoxFlat_vwblx")
+Label/font_sizes/font_size = 20
+Label/fonts/font = SubResource("FontVariation_hito2")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_jcfut")
+ProgressBar/font_sizes/font_size = 24
+ProgressBar/fonts/font = SubResource("FontVariation_ylmot")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_8hoa8")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_k8hgw")

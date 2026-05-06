@@ -14,7 +14,7 @@ public partial class PauseMenu : Control
         GetTree().Paused = true;
         inventoryDisplay.refresh();
         Visible = true;
-        Input.MouseMode = Input.MouseModeEnum.Visible;
+        Globals.ReleaseMouse();
     }
 
     public void resume()
@@ -22,7 +22,7 @@ public partial class PauseMenu : Control
         // unpauses the scene tree
         GetTree().Paused = false;
         Visible = false;
-        Input.MouseMode = Input.MouseModeEnum.Captured;
+        Globals.CaptureMouse();
     }
 
     public override void _Ready()

@@ -1,8 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://bsklgjsch3h64"]
-
-[ext_resource type="Texture2D" uid="uid://cfs7h4h85nmk8" path="res://FuncGodot_map/textures/SBS - Tiny Texture Pack 2 - 256x256/256x256/Stone/Stone_11-256x256.png" id="1_50v1w"]
-
-[resource]
-albedo_texture = ExtResource("1_50v1w")
-metallic_specular = 0.0
-texture_filter = 2

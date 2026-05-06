@@ -12,12 +12,12 @@ public partial class AbilityIconUI : ProgressBar
 		MinValue = 0;
 
 		// set the visuals of the ability icon
-		CustomMinimumSize = new Vector2(30, 30);
+		CustomMinimumSize = new Vector2(50, 50);
 		FillMode = (int)FillModeEnum.BottomToTop;
 		ShowPercentage = false;
 		StyleBoxFlat fillStyle = new StyleBoxFlat()
 		{
-			BgColor = new Color(0.5f, 0.5f, 0.5f, 0.5f),
+			BgColor = new Color(0.5f, 0.5f, 0.5f, 0.5f)
 		};
 		AddThemeStyleboxOverride("fill", fillStyle);
 
@@ -34,7 +34,7 @@ public partial class AbilityIconUI : ProgressBar
 		{
 			StyleBoxFlat backgroundStyle = new StyleBoxFlat()
 			{
-				BgColor = new Color(0.1f, 0.1f, 0.1f, 0.75f),
+				BgColor = new Color(0.1f, 0.1f, 0.1f, 0.75f)
 			};
 			AddThemeStyleboxOverride("background", backgroundStyle);
 		}

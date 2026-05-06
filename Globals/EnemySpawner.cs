@@ -1,11 +1,15 @@
 using Godot;
 using System;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 
 public partial class EnemySpawner : Node
 {
     [Export(PropertyHint.NodeType, "NavigationRegion3D")]
     private NavigationRegion3D navRegion; // the navigation region to spawn enemies in
+
+    [Export(PropertyHint.NodeType, "Timer")]
+    private GameTimer timer;
 
     [Export]
     public int spawnDelayMS = 1000; // the delay between spawning enemies
@@ -14,7 +18,10 @@ public partial class EnemySpawner : Node
     public int maxEnemyCount = 10; // the maximum number of total enemies allowed
 
     [Export(PropertyHint.Range, "1, 100, or_greater")]
-    public int spawnLevel = 1; // the level of enemies it spawns
+    private uint baseSpawnLevel = 1; // the base level of enemies it spawn
+
+    [Export(PropertyHint.Range, "10, 100")]
+    private uint levelUpTimeSeconds = 30; // the time it takes to increase the spawned enemy levels by 1
 
     private ulong lastSpawnedTime = 0;
 
@@ -43,10 +50,10 @@ public partial class EnemySpawner : Node
         spawnLocation.Y += 1;
         // select a random enemy to spawn
         EnemyBase newEnemy = Globals.EnemyRepository.PickRandom().Instantiate<EnemyBase>();
-        newEnemy.Level = spawnLevel;
-        newEnemy.Position = spawnLocation;
         // add the enemy to the scene
         GetTree().Root.AddChild(newEnemy);
+        newEnemy.Level = (int)(baseSpawnLevel + (timer.TotalSeconds / levelUpTimeSeconds));
+        newEnemy.Position = spawnLocation;
 
         return newEnemy;
     }

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 
@@ -35,6 +36,7 @@ public partial class EnemyBase : CharacterBody3D
 			_level = Math.Max(1, value); // minimum level is 1
 			MaxHealth = baseHealth + ((_level - 1) * 0.1f * baseHealth);
 			AttackDamage = baseDamage + ((_level - 1) * 0.1f * baseDamage);
+			EmitSignalLevelChanged(_level);
 		} }
 	private int _level = 1;
 
@@ -54,17 +56,16 @@ public partial class EnemyBase : CharacterBody3D
 
     public float CurrentHealth {
         get { return _currentHealth; }
-        set {
+        protected set {
             _currentHealth = Math.Clamp(value, 0, MaxHealth); // health is clamped between 0 and max health
             EmitSignalHealthChanged(_currentHealth, MaxHealth);
-            if(_currentHealth <= 0) { EmitSignalDied(); QueueFree(); }
     } }
     private float _currentHealth = 100;
 
     [Signal]
     public delegate void HealthChangedEventHandler(float currentHealth, float maxHealth);
-    [Signal]
-    public delegate void DiedEventHandler();
+	[Signal]
+	public delegate void LevelChangedEventHandler(int level);
 
 	// other variables
 	[ExportGroup("Navigation Agent")]
@@ -115,6 +116,15 @@ public partial class EnemyBase : CharacterBody3D
 		}
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	public void Hit(float damage, PlayerCharacter source)
+	{
+		CurrentHealth -= damage;
+		if( CurrentHealth <= 0)
+		{
+			SignalBus.Instance.EmitSignal("EnemyKilled", this, source);
+		}
 	}
 
 	// handles navigation every physics frame, called once in _PhysicsProcess

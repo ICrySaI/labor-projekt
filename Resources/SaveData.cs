@@ -27,6 +27,11 @@ public partial class SaveData : Resource
         ResourceSaver.Save(this, SavePath);
     }
 
+    public void Clear()
+    {
+        scores = new Godot.Collections.Array<int>();
+    }
+
     public static SaveData LoadOrCreate()
     {
         if (FileAccess.FileExists(SavePath))

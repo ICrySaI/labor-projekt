@@ -1,5 +1,6 @@
 using Godot;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public partial class Globals : Node
 {
@@ -36,6 +37,10 @@ public partial class Globals : Node
     {
         Instance = this;
         saveData = SaveData.LoadOrCreate();
+        foreach (int score in saveData.GetScores())
+        {
+            Debug.Print(score.ToString());
+        }
         base._Ready();
     }
 

@@ -1,7 +1,9 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Diagnostics;
+using System.Linq;
 
 public partial class EnemySpawner : Node
 {
@@ -34,8 +36,11 @@ public partial class EnemySpawner : Node
             int enemyCount = GetTree().GetNodesInGroup("Enemies").Count;
             if(enemyCount < maxEnemyCount)
             {
-                SpawnRandomEnemy();
-                lastSpawnedTime = currentTime;
+                if(SpawnRandomEnemy() != null)
+                {
+                    // sets last spawn time on successful spawn
+                    lastSpawnedTime = currentTime;
+                }
             }
         }
     }
@@ -47,13 +52,17 @@ public partial class EnemySpawner : Node
 
         // select a random point in the navregion
         Vector3 spawnLocation = NavigationServer3D.MapGetRandomPoint(navRegion.GetNavigationMap(), navRegion.NavigationLayers, true);
-        spawnLocation.Y += 1;
+        // prevent spawning too close to a player
+        List<Vector3> playerPositions = GetTree().GetNodesInGroup("Players").Select(p => ((PlayerCharacter)p).GlobalPosition).ToList();
+        int tooClosePlayerCount = playerPositions.Where(p => p.DistanceTo(spawnLocation) < 10).Count();
+        if(tooClosePlayerCount > 0) return null;
+
         // select a random enemy to spawn
         EnemyBase newEnemy = Globals.EnemyRepository.PickRandom().Instantiate<EnemyBase>();
-        // add the enemy to the scene
-        GetTree().Root.AddChild(newEnemy);
         newEnemy.Level = (int)(baseSpawnLevel + (timer.TotalSeconds / levelUpTimeSeconds));
         newEnemy.Position = spawnLocation;
+        // add the enemy to the scene
+        GetTree().Root.AddChild(newEnemy);
 
         return newEnemy;
     }

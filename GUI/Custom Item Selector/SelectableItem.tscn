@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://elubjtgf2iyn"]
+
+[ext_resource type="PackedScene" uid="uid://b8ua8ycx7u1f7" path="res://GUI/ItemDisplay.tscn" id="1_45swd"]
+[ext_resource type="Script" uid="uid://dac0bccvn4cdj" path="res://GUI/Custom Item Selector/SelectableItem.cs" id="1_cfu8h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cp055"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp055"]
+bg_color = Color(0.24705882, 0.44313726, 0.6627451, 1)
+border_width_left = 5
+border_width_top = 5
+border_color = Color(0.30980393, 0.5176471, 0.75686276, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="SelectableItem" type="PanelContainer" unique_id=639627344]
+offset_right = 374.0
+offset_bottom = 131.0
+size_flags_horizontal = 4
+mouse_behavior_recursive = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_cp055")
+script = ExtResource("1_cfu8h")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2101269208]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SelectionMarker" type="Panel" parent="HBoxContainer" unique_id=474691712]
+visible = false
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_cp055")
+
+[node name="ItemDisplay" parent="HBoxContainer" unique_id=1795105271 instance=ExtResource("1_45swd")]
+layout_mode = 2

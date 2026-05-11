@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://8pgqwc55kk3v"]
 
 [ext_resource type="Script" uid="uid://b3r05jwxx4pgt" path="res://Abilities/LightningAbility/LightningAbility.cs" id="2_s36fj"]
+[ext_resource type="Script" uid="uid://d1ohk85byl444" path="res://Abilities/UpgradeBase.cs" id="3_db8bt"]
 [ext_resource type="Texture2D" uid="uid://dg3v25r5bpcrl" path="res://Resources/VFX_textures/brackeys_vfx_bundle/particles/alpha/spark_05_a.png" id="3_s36fj"]
+[ext_resource type="Resource" uid="uid://cwvu82l2dj1at" path="res://Abilities/LightningAbility/Upgrades/LightningDamageUpgrade.tres" id="4_khjw5"]
+[ext_resource type="Resource" uid="uid://ci0aruiqtl3ew" path="res://Abilities/LightningAbility/Upgrades/LightningChainUpgrade.tres" id="5_khjw5"]
 
 [node name="LightningAbility" type="Node3D" unique_id=245157637]
 script = ExtResource("2_s36fj")
-baseChainRange = 30.0
+baseChainRange = 20.0
+baseDamage = 20.0
+ItemID = "LightningAbility"
 ItemIcon = ExtResource("3_s36fj")
 ItemName = "Chain Lightning"
 ItemDescription = "A lightningbolt that chains to nearby enemies"
+upgradeRepository = Array[ExtResource("3_db8bt")]([ExtResource("4_khjw5"), ExtResource("5_khjw5")])

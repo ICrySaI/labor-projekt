@@ -1,11 +1,11 @@
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
 
 public partial class Globals : Node
 {
     public static Globals Instance { get; private set; }
+
+    public static SaveData saveData { get; private set; }
 
     // the list of enemies that can be instanced
     public static Godot.Collections.Array<PackedScene> EnemyRepository = new Godot.Collections.Array<PackedScene>(){
@@ -35,6 +35,7 @@ public partial class Globals : Node
     public override void _Ready()
     {
         Instance = this;
+        saveData = SaveData.LoadOrCreate();
         base._Ready();
     }
 

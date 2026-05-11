@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dcgbbh8e6vmug"]
+
+[ext_resource type="Script" uid="uid://gll2adktyunn" path="res://GUI/LevelUpManager.cs" id="1_hpau6"]
+[ext_resource type="Theme" uid="uid://ciodp1p3ksd0f" path="res://GUI/GUITheme.tres" id="1_ibgf7"]
+
+[node name="LevelUpManager" type="Control" unique_id=1563848517]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hpau6")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=211741482]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 10.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ibgf7")

@@ -7,6 +7,9 @@ using Godot;
 public abstract partial class AbilityBase : Node3D, IInventoryItem
 {
 	[Export]
+	public string ItemID { get; private set; }
+
+	[Export]
 	public Texture2D ItemIcon { get; set; }
 
 	[Export]
@@ -24,11 +27,14 @@ public abstract partial class AbilityBase : Node3D, IInventoryItem
 	} }
 	private int _cooldownMS;
 
+	[Export(PropertyHint.ArrayType, "Resource")]
+	public Godot.Collections.Array<UpgradeBase> upgradeRepository = new Godot.Collections.Array<UpgradeBase>();
+
 	public List<UpgradeBase> upgrades = new List<UpgradeBase>();
 
 	public ulong lastFired { get; protected set; } = 0;
 
-	public AbilityBase()
+	public override void _Ready()
 	{
 		// constructor sets stats to their base values
 		ResetStats();

@@ -6,6 +6,9 @@ public partial class PauseMenu : Control
     [Export(PropertyHint.NodeType, "Node3D")]
     private Inventory inventory;
 
+    [Export(PropertyHint.NodeType, "Control")]
+    private AbilitySelector abilitySelector;
+
     private InventoryDisplay inventoryDisplay;
 
     public void pause()
@@ -38,11 +41,12 @@ public partial class PauseMenu : Control
     {
         if (@event.IsActionPressed("ui_cancel"))
         {
+            // cannot pause while selecting ability
+            if(abilitySelector.Visible) return;
+
             if(GetTree().Paused) resume();
             else pause();
         }
-
-        base._Input(@event);
     }
 
     public void OnResumePressed()

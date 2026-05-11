@@ -8,10 +8,10 @@ public partial class ItemDisplay : Control
             return _item;
         }
         set {
-            icon.Texture = value.ItemIcon;
-            name.Text = value.ItemName;
-            description.Text = value.ItemDescription;
             _item = value;
+            icon.Texture = _item.ItemIcon;
+            name.Text = _item.ItemName;
+            description.Text = _item.ItemDescription;
     } }
     private IInventoryItem _item;
 

@@ -12,18 +12,7 @@ public partial class Inventory : Node3D
 	[Export(PropertyHint.NodeType, "GridContainer")]
 	private GridContainer grid;
 
-	private List<(AbilityBase ability, AbilityIconUI icon)> abilities = new List<(AbilityBase, AbilityIconUI)>();
-
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		PackedScene lightningAbilityScene = GD.Load<PackedScene>("res://Abilities/LightningAbility/LightningAbility.tscn");
-		GD.Load<LightningDamageUpgrade>("res://Abilities/LightningAbility/Upgrades/LightningDamageUpgrade.tres");
-		// ------testing abilities------ //
-		LightningAbility test1 = lightningAbilityScene.Instantiate<LightningAbility>();
-		test1.AddUpgrade(GD.Load<LightningDamageUpgrade>("res://Abilities/LightningAbility/Upgrades/LightningDamageUpgrade.tres"));
-		addAbility(test1);
-	}
+	public List<(AbilityBase ability, AbilityIconUI icon)> abilities = new List<(AbilityBase, AbilityIconUI)>();
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)

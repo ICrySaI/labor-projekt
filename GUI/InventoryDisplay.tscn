@@ -4,13 +4,14 @@
 [ext_resource type="Script" uid="uid://cla15r2hohyvo" path="res://GUI/InventoryDisplay.cs" id="1_rfc42"]
 
 [node name="InventoryDisplay" type="Control" unique_id=994947193]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 script = ExtResource("1_rfc42")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=256447699]

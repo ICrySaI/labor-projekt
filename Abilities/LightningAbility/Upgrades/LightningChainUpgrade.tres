@@ -1,0 +1,11 @@
+[gd_resource type="Resource" format=3 uid="uid://ci0aruiqtl3ew"]
+
+[ext_resource type="Script" uid="uid://de8xl6000awep" path="res://Abilities/LightningAbility/Upgrades/LightningChainUpgrade.cs" id="1_csacd"]
+
+[resource]
+script = ExtResource("1_csacd")
+chainCountIncrease = 1
+ItemID = "LightningChainUpgrade"
+ItemName = "Extra Chain"
+ItemDescription = "Increases the amount of enemies Chain Lightning hits by 1"
+AbilityID = "LightningAbility"

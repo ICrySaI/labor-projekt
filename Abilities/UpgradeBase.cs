@@ -1,9 +1,14 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
+using System.Reflection;
 
 public abstract partial class UpgradeBase : Resource, IInventoryItem
 {
+	[Export]
+	public string ItemID { get; private set; }
+
 	[Export]
 	public Texture2D ItemIcon { get; set; }
 
@@ -12,6 +17,9 @@ public abstract partial class UpgradeBase : Resource, IInventoryItem
 
 	[Export(PropertyHint.MultilineText)]
 	public string ItemDescription { get; set; }
+
+	[Export]
+	public string AbilityID { get; private set; }
 
 	// applies it's multiplicative upgrades to the given ability
 	public abstract void ApplyMultiplicativeUpgrades(AbilityBase a);

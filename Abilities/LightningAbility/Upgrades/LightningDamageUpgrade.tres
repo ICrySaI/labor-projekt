@@ -1,9 +1,13 @@
 [gd_resource type="Resource" format=3 uid="uid://cwvu82l2dj1at"]
 
 [ext_resource type="Script" uid="uid://rmqs7phjg4ch" path="res://Abilities/LightningAbility/Upgrades/LightningDamageUpgrade.cs" id="1_dmuod"]
+[ext_resource type="Texture2D" uid="uid://ce3sfb0k4fcxr" path="res://Resources/VFX_textures/brackeys_vfx_bundle/particles/opague/star_08.png" id="1_nc8a8"]
 
 [resource]
 script = ExtResource("1_dmuod")
-damageIncrease = 30.0
+damageIncrease = 5.0
+ItemID = "LightningDamageUpgrade"
+ItemIcon = ExtResource("1_nc8a8")
 ItemName = "High Voltage"
-ItemDescription = "Increases the damage of chain lightning by 30"
+ItemDescription = "Increases the damage of chain lightning by 5"
+AbilityID = "LightningAbility"

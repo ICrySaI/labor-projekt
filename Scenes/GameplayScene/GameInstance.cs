@@ -6,8 +6,6 @@ public partial class GameInstance : Node3D
 {
 	[Export(PropertyHint.NodeType, "Label")]
 	private ScoreBoard scoreBoard;
-	[Export(PropertyHint.NodeType, "Timer")]
-	private GameTimer gameTimer;
 	[Export(PropertyHint.NodeType, "Control")]
 	private AbilitySelector abilitySelector;
 	[Export(PropertyHint.NodeType, "Control")]
@@ -38,8 +36,10 @@ public partial class GameInstance : Node3D
 
 	public void GameOver()
 	{
-		Globals.saveData.AddScore(scoreBoard.Score, (int)gameTimer.TotalSeconds);
+		Globals.saveData.AddScore(scoreBoard.Score);
 		Globals.saveData.save();
+
+		gameOverScreen.Visible = true;
 
 		GetTree().Paused = true;
 		Globals.ReleaseMouse();

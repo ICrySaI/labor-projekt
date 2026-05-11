@@ -8,22 +8,18 @@ public partial class SaveData : Resource
     public const string SavePath = "user://save_data.tres";
 
     [Export]
-    private Godot.Collections.Dictionary<int, int> scores = new Godot.Collections.Dictionary<int, int>(); // scores are stored as (score, seconds)
+    private Godot.Collections.Array<int> scores = new Godot.Collections.Array<int>();
 
     // returns a sorted list of scores
-    public List<(int score, int seconds)> GetScores()
+    public List<int> GetScores()
     {
-        List<(int score, int seconds)> res = new List<(int, int)>();
-        foreach (var score in scores)
-        {
-            res.Add((score.Key, score.Value));
-        }
-        return res.OrderByDescending(s => s.score).ToList();
+        List<int> result = [.. scores];
+        return result.OrderDescending().ToList();
     }
 
-    public void AddScore(int score, int seconds)
+    public void AddScore(int score)
     {
-        scores.Add(score, seconds);
+        scores.Add(score);
     }
 
     public void save()

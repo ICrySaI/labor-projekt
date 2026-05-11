@@ -8,6 +8,9 @@ public partial class PauseMenu : Control
 
     [Export(PropertyHint.NodeType, "Control")]
     private AbilitySelector abilitySelector;
+    
+    [Export(PropertyHint.NodeType, "Control")]
+    private Control gameOverScreen;
 
     private InventoryDisplay inventoryDisplay;
 
@@ -42,7 +45,7 @@ public partial class PauseMenu : Control
         if (@event.IsActionPressed("ui_cancel"))
         {
             // cannot pause while selecting ability
-            if(abilitySelector.Visible) return;
+            if(abilitySelector.Visible || gameOverScreen.Visible) return;
 
             if(GetTree().Paused) resume();
             else pause();

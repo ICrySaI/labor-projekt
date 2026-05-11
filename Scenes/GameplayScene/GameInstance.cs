@@ -10,6 +10,8 @@ public partial class GameInstance : Node3D
 	private GameTimer gameTimer;
 	[Export(PropertyHint.NodeType, "Control")]
 	private AbilitySelector abilitySelector;
+	[Export(PropertyHint.NodeType, "Control")]
+	private Control gameOverScreen;
 	[Export(PropertyHint.NodeType, "RigidBody3D")]
 	private PlayerCharacter playerCharacter;
 
@@ -38,5 +40,8 @@ public partial class GameInstance : Node3D
 	{
 		Globals.saveData.AddScore(scoreBoard.Score, (int)gameTimer.TotalSeconds);
 		Globals.saveData.save();
+
+		GetTree().Paused = true;
+		Globals.ReleaseMouse();
 	}
 }

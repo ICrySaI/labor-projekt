@@ -25,7 +25,7 @@ public partial class GameInstance : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
+
 	}
 
 	public void EnemyKilled(EnemyBase enemy, PlayerCharacter killedBy)
@@ -36,12 +36,17 @@ public partial class GameInstance : Node3D
 
 	public void GameOver()
 	{
-		Globals.saveData.AddScore(scoreBoard.Score);
-		Globals.saveData.save();
-
 		gameOverScreen.Visible = true;
-
 		GetTree().Paused = true;
 		Globals.ReleaseMouse();
+	}
+
+	public void QuitToMenu()
+	{
+		// save score
+		Globals.saveData.AddScore(scoreBoard.Score);
+		Globals.saveData.save();
+		// change scene to main menu
+		GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
 	}
 }

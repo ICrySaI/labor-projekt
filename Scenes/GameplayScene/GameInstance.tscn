@@ -826,3 +826,6 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 color = Color(1, 1, 1, 0)
+
+[connection signal="QuitButtonPressed" from="PauseMenu" to="." method="QuitToMenu"]
+[connection signal="pressed" from="GameOverScreen/PanelContainer/VBoxContainer/Button" to="." method="QuitToMenu"]

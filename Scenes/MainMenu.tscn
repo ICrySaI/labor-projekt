@@ -1,3 +1,80 @@
 [gd_scene format=3 uid="uid://cbg8i8u7ishug"]
 
-[node name="MainMenu" type="Node2D" unique_id=887276632]
+[ext_resource type="Script" uid="uid://cfa41h1alrx5t" path="res://Scenes/MainMenu.cs" id="1_853f1"]
+[ext_resource type="Theme" uid="uid://ciodp1p3ksd0f" path="res://GUI/GUITheme.tres" id="1_tt5f1"]
+
+[node name="MainMenu" type="Control" unique_id=1841162166]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_853f1")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=211056248]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.05
+anchor_right = 0.7
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tt5f1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=895125406]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Header" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1509547025]
+layout_mode = 2
+theme = ExtResource("1_tt5f1")
+theme_type_variation = &"HeaderLarge"
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1474652389]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_tt5f1")
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=755488389]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_tt5f1")
+text = "Quit Game"
+
+[node name="ScoresLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1650444742]
+layout_mode = 2
+theme = ExtResource("1_tt5f1")
+theme_type_variation = &"HeaderMedium"
+text = "High Scores:"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer" unique_id=935770106]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScoresContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer" unique_id=248777605]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ClearScoresButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1414505795]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_tt5f1")
+text = "Clear Scores"
+
+[node name="EndMargin" type="ColorRect" parent="PanelContainer/VBoxContainer" unique_id=513323108]
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PlayButton" to="." method="StartGame"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/QuitButton" to="." method="QuitGame"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/ClearScoresButton" to="." method="ClearScores"]

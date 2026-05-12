@@ -22,8 +22,8 @@ public partial class RangedEnemy : EnemyBase
 	[Export]
 	private float preferredDistance = 10.0f;
 
-    protected override void Navigate()
-    {
+	protected override void Navigate()
+	{
 		//only navigate if the map has been initialized
 		if(NavigationServer3D.MapGetIterationId(navAgent.GetNavigationMap()) > 0) 
 		{
@@ -58,16 +58,16 @@ public partial class RangedEnemy : EnemyBase
 		{
 			// creates a new bullet
 			RangedAttackBullet bullet = new RangedAttackBullet(this, bulletRadius, bulletSpeed, bulletDirection, AttackDamage, attackRange){ Position = head.GlobalPosition };
-        	AddChild(bullet);
+			AddChild(bullet);
 			// rotates bullet direction
 			bulletDirection = bulletDirection.Rotated(Vector3.Up, attackAngleRadians / (bulletCount - 1));
 		}
 		return true;
 	}
 
-    protected override Node3D FindTarget()
-    {
-        Node3D closest = null;
+	protected override Node3D FindTarget()
+	{
+		Node3D closest = null;
 		float closestDistance = 0;
 		Node3D closestVisible = null;
 		float closestVisibleDistance = 0;

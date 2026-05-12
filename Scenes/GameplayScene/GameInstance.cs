@@ -46,6 +46,8 @@ public partial class GameInstance : Node3D
 		// save score
 		Globals.saveData.AddScore(scoreBoard.Score);
 		Globals.saveData.save();
+		// make sure game is unpaused
+		GetTree().Paused = false;
 		// change scene to main menu
 		GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
 	}

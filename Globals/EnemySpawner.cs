@@ -62,7 +62,7 @@ public partial class EnemySpawner : Node
         newEnemy.Level = (int)(baseSpawnLevel + (timer.TotalSeconds / levelUpTimeSeconds));
         newEnemy.Position = spawnLocation;
         // add the enemy to the scene
-        GetTree().Root.AddChild(newEnemy);
+        GetTree().CurrentScene.AddChild(newEnemy);
 
         return newEnemy;
     }

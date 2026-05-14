@@ -51,4 +51,11 @@ public partial class GameInstance : Node3D
 		// change scene to main menu
 		GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
 	}
+
+    public override void _ExitTree()
+    {
+		// make sure to disconnect the signal when exiting the scene tree
+		SignalBus.Instance.EnemyKilled -= EnemyKilled;
+        base._ExitTree();
+    }
 }

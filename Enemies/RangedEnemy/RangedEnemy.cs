@@ -136,7 +136,7 @@ public partial class RangedEnemy : EnemyBase
 		bool result = rayCast.GetCollider() == target;
 
 		// removes raycast
-		RemoveChild(rayCast);
+		rayCast.QueueFree();
 
 		//if(result) Debug.Print("visible");
 		//else Debug.Print("not visible");

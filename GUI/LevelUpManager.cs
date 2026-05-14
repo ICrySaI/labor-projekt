@@ -30,4 +30,11 @@ public partial class LevelUpManager : Control
             abilitySelector.showSelector();
         }
     }
+
+    public override void _ExitTree()
+    {
+        // make sure to disconnect the signal when exiting the scene tree
+        SignalBus.Instance.EnemyKilled -= EnemyKilled;
+        base._ExitTree();
+    }
 }

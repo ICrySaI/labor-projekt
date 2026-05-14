@@ -49,13 +49,15 @@ public partial class AbilitySelector : Control
         {
             if (inSelection)
             {
-                // if we don't have the ability, but it's already in the selection, return null
+                // if we don't have the ability, but it's already in the selection, free it and return null
+                ability.Free();
                 return null;
             }
             return ability;
         }
-        // if we have the ability select a random upgrade
+        // if we have the ability select a random upgrade and free the ability
         UpgradeBase upgrade = ability.upgradeRepository.PickRandom();
+        ability.Free();
         return upgrade;
     }
 

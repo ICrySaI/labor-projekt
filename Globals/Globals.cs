@@ -16,7 +16,8 @@ public partial class Globals : Node
 
 	// the list of abilities that can be instanced
 	public static Godot.Collections.Array<PackedScene> AbilityRepository = new Godot.Collections.Array<PackedScene>(){
-		GD.Load<PackedScene>("res://Abilities/LightningAbility/LightningAbility.tscn")
+		GD.Load<PackedScene>("res://Abilities/LightningAbility/LightningAbility.tscn"),
+		GD.Load<PackedScene>("res://Abilities/PulseAbility/PulseAbility.tscn")
 	};
 
 	public static bool mouseCaptured { get; private set; } = false;

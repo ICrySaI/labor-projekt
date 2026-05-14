@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3 uid="uid://nb2hx8x3f267"]
+
+[ext_resource type="Texture2D" uid="uid://dihuracl80a0r" path="res://Resources/VFX_textures/brackeys_vfx_bundle/particles/alpha/light_01_a.png" id="1_58f0c"]
+[ext_resource type="Script" uid="uid://c7ytyka7av6io" path="res://Abilities/PulseAbility/Upgrades/PulseHealUpgrade.cs" id="2_supp8"]
+
+[resource]
+script = ExtResource("2_supp8")
+healValue = 1.0
+ItemID = "PulseHealUpgrade"
+ItemIcon = ExtResource("1_58f0c")
+ItemName = "Healing Pulse"
+ItemDescription = "Heals the player 1 health for every enemy hit by the pulse"
+AbilityID = "PulseAbility"

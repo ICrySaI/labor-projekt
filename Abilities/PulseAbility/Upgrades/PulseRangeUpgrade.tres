@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3 uid="uid://dcp6qoqxu5w18"]
+
+[ext_resource type="Texture2D" uid="uid://6o8nlfoup68v" path="res://Resources/VFX_textures/brackeys_vfx_bundle/particles/alpha/circle_04_a.png" id="1_4ames"]
+[ext_resource type="Script" uid="uid://dq2myqhe55poy" path="res://Abilities/PulseAbility/Upgrades/PulseRangeUpgrade.cs" id="1_wstc6"]
+
+[resource]
+script = ExtResource("1_wstc6")
+rangeIncrease = 1.0
+ItemID = "PulseRangeUpgrade"
+ItemIcon = ExtResource("1_4ames")
+ItemName = "Greater Pulse"
+ItemDescription = "Increases the range of the pulse by 1"
+AbilityID = "PulseAbility"

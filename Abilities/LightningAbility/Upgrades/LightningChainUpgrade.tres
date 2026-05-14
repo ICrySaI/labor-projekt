@@ -1,11 +1,13 @@
 [gd_resource type="Resource" format=3 uid="uid://ci0aruiqtl3ew"]
 
+[ext_resource type="Texture2D" uid="uid://bkrrefekfwnhx" path="res://Resources/VFX_textures/brackeys_vfx_bundle/particles/alpha/spark_07_a.png" id="1_5th8q"]
 [ext_resource type="Script" uid="uid://de8xl6000awep" path="res://Abilities/LightningAbility/Upgrades/LightningChainUpgrade.cs" id="1_csacd"]
 
 [resource]
 script = ExtResource("1_csacd")
 chainCountIncrease = 1
 ItemID = "LightningChainUpgrade"
+ItemIcon = ExtResource("1_5th8q")
 ItemName = "Extra Chain"
 ItemDescription = "Increases the amount of enemies Chain Lightning hits by 1"
 AbilityID = "LightningAbility"

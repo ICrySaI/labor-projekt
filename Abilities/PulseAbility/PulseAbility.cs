@@ -76,6 +76,8 @@ public partial class PulseAbility : AbilityBase
         firing = false;
         // not all enemies might be valid since some of them could have died!!
         OnAbilityFired(enemiesHit, source);
+        // clears the list of hit enemies
+        enemiesHit.Clear();
     }
 
     protected override void ResetStats()

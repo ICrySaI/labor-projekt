@@ -59,10 +59,11 @@ public partial class EnemySpawner : Node
 
         // select a random enemy to spawn
         EnemyBase newEnemy = Globals.EnemyRepository.PickRandom().Instantiate<EnemyBase>();
-        newEnemy.Level = (int)(baseSpawnLevel + (timer.TotalSeconds / levelUpTimeSeconds));
         newEnemy.Position = spawnLocation;
         // add the enemy to the scene
         GetTree().CurrentScene.AddChild(newEnemy);
+        
+        newEnemy.Level = (int)(baseSpawnLevel + (timer.TotalSeconds / levelUpTimeSeconds));
 
         return newEnemy;
     }

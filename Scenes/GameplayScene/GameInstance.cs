@@ -2,7 +2,6 @@ using Godot;
 using Chickensoft.UMLGenerator;
 
 [ClassDiagram(UseVSCodePaths = true)]
-
 public partial class GameInstance : Node3D
 {
 	[Export(PropertyHint.NodeType, "Label")]
@@ -21,12 +20,6 @@ public partial class GameInstance : Node3D
 		SignalBus.Instance.EnemyKilled += EnemyKilled;
 		playerCharacter.Died += GameOver;
 		abilitySelector.showSelector();
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-
 	}
 
 	public void EnemyKilled(EnemyBase enemy, PlayerCharacter killedBy)

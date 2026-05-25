@@ -12,12 +12,11 @@ package GameInstance-Scene [[vscode://file/E:/School_stuff/Game/labor-projekt/Sc
         EnemySpawner - [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/EnemySpawner.cs Script]]
         --
         [Methods]
-        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:56 _ExitTree()]]
-        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:27 _Process()]]
-        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:18 _Ready()]]
-        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:32 EnemyKilled()]]
-        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:38 GameOver()]]
-        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:45 QuitToMenu()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:49 _ExitTree()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:17 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:25 EnemyKilled()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:31 GameOver()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:38 QuitToMenu()]]
     }
     class LevelUpManager  {
         [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/LevelUpManager.cs ScriptFile]]

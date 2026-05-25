@@ -1,0 +1,372 @@
+@startuml
+
+package MainMenu-Scene {
+    class MainMenu  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/MainMenu.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/MainMenu.cs:28 _Process()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/MainMenu.cs:10 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/MainMenu.cs:42 ClearScores()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/MainMenu.cs:37 QuitGame()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/MainMenu.cs:32 StartGame()]]
+    }
+
+}
+
+package EnemyBase-Scene [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.tscn]] {
+    class EnemyBase  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs ScriptFile]]
+        [Nodes]
+        HealthBar - [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs Script]]
+        [Properties]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:45 AttackDamage]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:77 CenterOfMass]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:55 CurrentHealth]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:30 Level]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:46 MaxHealth]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:98 _PhysicsProcess()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:88 _Process()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:81 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:165 FindTarget()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:119 Hit()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:142 MoveTowardsTarget()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:158 MoveWithVelocity()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:129 Navigate()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:219 TryAttack()]]
+    }
+    class EnemyHealthBar  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs:16 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs:26 HealthChanged()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs:35 LevelChanged()]]
+    }
+    EnemyBase::HealthBar ---> EnemyHealthBar
+    
+    class RangedEnemy  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedEnemy.cs ScriptFile]]
+        [Properties]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedEnemy.cs:11 attackAngle]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedEnemy.cs:66 FindTarget()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedEnemy.cs:119 IsTargetVisible()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedEnemy.cs:23 Navigate()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedEnemy.cs:45 TryAttack()]]
+    }
+    
+    class RangedAttackBullet  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedAttackBullet.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedAttackBullet.cs:40 _PhysicsProcess()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedAttackBullet.cs:32 _Ready()]]
+    }
+    
+    class MeleeEnemy  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/MeleeEnemy/MeleeEnemy.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/MeleeEnemy/MeleeEnemy.cs:10 TryAttack()]]
+    }
+    
+    class MeleeEnemyAttack  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/MeleeEnemy/MeleeEnemyAttack.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/MeleeEnemy/MeleeEnemyAttack.cs:38 _Process()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/MeleeEnemy/MeleeEnemyAttack.cs:29 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/MeleeEnemy/MeleeEnemyAttack.cs:50 CompleteAttack()]]
+    }
+    
+    EnemyBase <|-- RangedEnemy
+    EnemyBase <|-- MeleeEnemy
+    RangedEnemy --> RangedAttackBullet
+    MeleeEnemy --> MeleeEnemyAttack
+}
+
+package Abilities-Scene {
+    package AbilityBase-Type [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs]] {
+        interface IInventoryItem {
+            [Properties]
+            [[ItemID]]
+            [[ItemIcon]]
+            [[ItemName]]
+            [[ItemDescription]]
+        }
+        
+        class AbilityBase  {
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs ScriptFile]]
+            
+            --
+            [Properties]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:21 baseCooldownMS]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:23 CooldownMS]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:18 ItemDescription]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:12 ItemIcon]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:9 ItemID]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:15 ItemName]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:35 lastFired]]
+            --
+            [Methods]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:37 _Ready()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:63 AddUpgrade()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:76 Fire()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:78 OnAbilityFired()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:69 RemoveUpgrade()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:61 ResetStats()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:44 UpdateStats()]]
+        }
+        class AbilityIconUI  {
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/AbilityIconUI.cs ScriptFile]]
+            [Constructors]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/AbilityIconUI.cs:9 AbilityIconUI]]([[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs AbilityBase]] ability)
+            --
+            [Methods]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/AbilityIconUI.cs:44 CooldownChanged()]]
+        }
+        AbilityBase::AbilityIconUI ---> AbilityIconUI
+        
+        class UpgradeBase  {
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs ScriptFile]]
+            [Properties]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:20 AbilityID]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:17 ItemDescription]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:11 ItemIcon]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:8 ItemID]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:14 ItemName]]
+            --
+            [Methods]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:26 ApplyAdditiveUpgrades()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:24 ApplyMultiplicativeUpgrades()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:28 OnAbilityFired()]]
+        }
+        
+        IInventoryItem <|.. AbilityBase
+        IInventoryItem <|.. UpgradeBase
+    }
+    
+    class PulseAbility  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs ScriptFile]]
+        [Properties]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:19 baseDamage]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:8 baseRange]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:21 Damage]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:10 Range]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:46 _Process()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:33 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:74 AttackFinished()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:66 Fire()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:83 ResetStats()]]
+    }
+    
+    class PulseHealUpgrade  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseHealUpgrade.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseHealUpgrade.cs:11 ApplyAdditiveUpgrades()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseHealUpgrade.cs:16 ApplyMultiplicativeUpgrades()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseHealUpgrade.cs:21 OnAbilityFired()]]
+    }
+    class PulseRangeUpgrade  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseRangeUpgrade.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseRangeUpgrade.cs:11 ApplyAdditiveUpgrades()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseRangeUpgrade.cs:19 ApplyMultiplicativeUpgrades()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseRangeUpgrade.cs:24 OnAbilityFired()]]
+    }
+    
+    class LightningAbility  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs ScriptFile]]
+        [Properties]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:8 baseChainAmount]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:16 baseChainRange]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:24 baseDamage]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:10 ChainAmount]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:18 ChainRange]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:26 Damage]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:55 ChainFrom()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:36 Fire()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:89 ResetStats()]]
+    }
+    class LightningChainUpgrade  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningChainUpgrade.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningChainUpgrade.cs:10 ApplyAdditiveUpgrades()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningChainUpgrade.cs:18 ApplyMultiplicativeUpgrades()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningChainUpgrade.cs:23 OnAbilityFired()]]
+    }
+    class LightningDamageUpgrade  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningDamageUpgrade.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningDamageUpgrade.cs:11 ApplyAdditiveUpgrades()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningDamageUpgrade.cs:19 ApplyMultiplicativeUpgrades()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningDamageUpgrade.cs:24 OnAbilityFired()]]
+    }
+    
+    AbilityBase <|-- PulseAbility
+    AbilityBase <|-- LightningAbility
+    UpgradeBase <|-- PulseHealUpgrade
+    UpgradeBase <|-- PulseRangeUpgrade
+    UpgradeBase <|-- LightningChainUpgrade
+    UpgradeBase <|-- LightningDamageUpgrade
+    
+    class Inventory  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs:19 _Process()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs:37 addAbility()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs:65 GetItems()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs:51 removeAbility()]]
+    }
+    
+    Inventory O-- IInventoryItem
+}
+
+package GameInstance-Scene [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.tscn]] {
+    class GameInstance  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs ScriptFile]]
+        [Nodes]
+        LevelUpManager - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/LevelUpManager.cs Script]]
+        PauseMenu - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs Script]]
+        AbilitySelector - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.cs Script]]
+        PlayerCharacter - [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs Script]]
+        Inventory - [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs Script]]
+        EnemySpawner - [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/EnemySpawner.cs Script]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:56 _ExitTree()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:27 _Process()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:18 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:32 EnemyKilled()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:38 GameOver()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameInstance.cs:45 QuitToMenu()]]
+    }
+    class LevelUpManager  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/LevelUpManager.cs ScriptFile]]
+        [Properties]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/LevelUpManager.cs:7 KillsToLevelUp]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/LevelUpManager.cs:35 _ExitTree()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/LevelUpManager.cs:16 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/LevelUpManager.cs:24 EnemyKilled()]]
+    }
+    package PauseMenu-Scene [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.tscn]] {
+        class PauseMenu  {
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs ScriptFile]]
+            [Nodes]
+            InventoryDisplay - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.cs Script]]
+            --
+            [Methods]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs:47 _Input()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs:38 _Ready()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs:64 OnQuitPressed()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs:59 OnResumePressed()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs:21 pause()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs:30 resume()]]
+        }
+        package InventoryDisplay-Scene [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.tscn]] {
+            class InventoryDisplay  {
+                [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.cs ScriptFile]]
+                [Nodes]
+                Control - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs Script]]
+                Control2 - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs Script]]
+                --
+                [Methods]
+                [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.cs:15 _Ready()]]
+                [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.cs:22 refresh()]]
+            }
+            class ItemDisplay  {
+                [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs ScriptFile]]
+                [Properties]
+                [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs:7 Item]]
+                --
+                [Methods]
+                [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs:23 _Ready()]]
+            }
+            InventoryDisplay::Control ---> ItemDisplay
+        }
+        PauseMenu::InventoryDisplay ---> InventoryDisplay
+    }
+    package AbilitySelector-Scene [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.tscn]] {
+        class AbilitySelector  {
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.cs ScriptFile]]
+            [Nodes]
+            SelectableItem - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs Script]]
+            --
+            [Methods]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.cs:97 _Ready()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.cs:65 ConfirmButtonPressed()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.cs:43 getRandomUnownedItem()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.cs:87 SelectableItemPressed()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.cs:20 showSelector()]]
+        }
+        package SelectableItem-Scene [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.tscn]] {
+            class SelectableItem  {
+                [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs ScriptFile]]
+                [Nodes]
+                ItemDisplay - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs Script]]
+                [Properties]
+                [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs:9 Item]]
+                --
+                [Methods]
+                [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs:37 _GuiInput()]]
+                [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs:20 _Ready()]]
+                [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs:27 select()]]
+                [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs:32 unselect()]]
+            }
+
+            SelectableItem::ItemDisplay ---> ItemDisplay
+        }
+        AbilitySelector::SelectableItem ---> SelectableItem
+    }
+    class PlayerCharacter  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs ScriptFile]]
+        [Properties]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:65 CurrentHealth]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:53 MaxHealth]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:121 _PhysicsProcess()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:112 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:206 _UnhandledInput()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:171 _UnhandledKeyInput()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:279 BulletJump()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:384 Dash()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:310 EndBulletJump()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:375 EndGlide()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:343 EndSlide()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:261 Jump()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:239 LandedOnGround()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:246 LeftGround()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:414 ResetDash()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:357 StartGlide()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:316 StartSlide()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:251 UpdateGravityScale()]]
+    }
+    class Inventory  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs:19 _Process()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs:37 addAbility()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs:65 GetItems()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs:51 removeAbility()]]
+    }
+    class EnemySpawner  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/EnemySpawner.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/EnemySpawner.cs:30 _Process()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/EnemySpawner.cs:49 SpawnRandomEnemy()]]
+    }
+    GameInstance::LevelUpManager ---> LevelUpManager
+    GameInstance::PauseMenu ---> PauseMenu
+    GameInstance::AbilitySelector ---> AbilitySelector
+    GameInstance::PlayerCharacter ---> PlayerCharacter
+    GameInstance::Inventory ---> Inventory
+    GameInstance::EnemySpawner ---> EnemySpawner
+}
+
+@enduml

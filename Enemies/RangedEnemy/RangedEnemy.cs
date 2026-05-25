@@ -39,7 +39,6 @@ public partial class RangedEnemy : EnemyBase
 				MoveWithVelocity(direction * movementSpeed);
 			}
 		}
-        
     }
 
 	protected override bool TryAttack()

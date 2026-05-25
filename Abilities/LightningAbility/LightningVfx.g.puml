@@ -1,0 +1,11 @@
+@startuml
+
+class LightningVFX  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningVfx.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningVfx.cs:27 _Process()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningVfx.cs:34 setPosition()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningVfx.cs:18 TriggerEffect()]]
+}
+
+@enduml

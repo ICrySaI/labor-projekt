@@ -1,9 +1,6 @@
 using Godot;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
+using Chickensoft.UMLGenerator;
 
 /*
 Base class for enemy units. Inherit enemy scripts from this class
@@ -21,6 +18,7 @@ By default an enemy has no attack and always moves towards the nearest reachable
 If you override _Process or _PhysicsProcess always call the base function as well to make sure navigation and attacking stay functional
 (or implement navigation and attacking yourself)
 */
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class EnemyBase : CharacterBody3D
 {
 	// base stats

@@ -1,0 +1,10 @@
+@startuml
+
+class HealthBar  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/HealthBar.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/HealthBar.cs:11 _Ready()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/HealthBar.cs:18 HealthChanged()]]
+}
+
+@enduml

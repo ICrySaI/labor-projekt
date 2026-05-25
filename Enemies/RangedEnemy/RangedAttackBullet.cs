@@ -1,5 +1,7 @@
 using Godot;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class RangedAttackBullet : MeshInstance3D
 {
 	Node source;

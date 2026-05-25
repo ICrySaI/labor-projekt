@@ -1,0 +1,10 @@
+@startuml
+
+class RangedAttackBullet  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedAttackBullet.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedAttackBullet.cs:40 _PhysicsProcess()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedAttackBullet.cs:32 _Ready()]]
+}
+
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+
+class SaveData  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Resources/SaveData.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Resources/SaveData.cs:21 AddScore()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Resources/SaveData.cs:31 Clear()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Resources/SaveData.cs:15 GetScores()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Resources/SaveData.cs:36 LoadOrCreate()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Resources/SaveData.cs:26 save()]]
+}
+
+@enduml

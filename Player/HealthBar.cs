@@ -1,7 +1,7 @@
 using Godot;
-using System;
+using Chickensoft.UMLGenerator;
 
-
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class HealthBar : ProgressBar
 {
 	[Export(PropertyHint.NodeType, "RigidBody3D")]

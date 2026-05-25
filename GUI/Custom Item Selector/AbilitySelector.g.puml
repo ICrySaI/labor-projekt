@@ -1,0 +1,43 @@
+@startuml
+
+package AbilitySelector-Scene [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.tscn]] {
+    class AbilitySelector  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.cs ScriptFile]]
+        [Nodes]
+        SelectableItem - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs Script]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.cs:97 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.cs:65 ConfirmButtonPressed()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.cs:43 getRandomUnownedItem()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.cs:87 SelectableItemPressed()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/AbilitySelector.cs:20 showSelector()]]
+    }
+    package SelectableItem-Scene [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.tscn]] {
+        class SelectableItem  {
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs ScriptFile]]
+            [Nodes]
+            ItemDisplay - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs Script]]
+            [Properties]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs:9 Item]]
+            --
+            [Methods]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs:37 _GuiInput()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs:20 _Ready()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs:27 select()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/Custom Item Selector/SelectableItem.cs:32 unselect()]]
+        }
+        class ItemDisplay  {
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs ScriptFile]]
+            [Properties]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs:7 Item]]
+            --
+            [Methods]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs:23 _Ready()]]
+        }
+        SelectableItem::ItemDisplay ---> ItemDisplay
+    }
+    AbilitySelector::SelectableItem ---> SelectableItem
+}
+
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+
+class LightningDamageUpgrade  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningDamageUpgrade.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningDamageUpgrade.cs:11 ApplyAdditiveUpgrades()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningDamageUpgrade.cs:19 ApplyMultiplicativeUpgrades()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningDamageUpgrade.cs:24 OnAbilityFired()]]
+}
+
+@enduml

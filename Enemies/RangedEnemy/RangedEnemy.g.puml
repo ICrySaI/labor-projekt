@@ -1,0 +1,15 @@
+@startuml
+
+class RangedEnemy  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedEnemy.cs ScriptFile]]
+    [Properties]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedEnemy.cs:11 attackAngle]]
+    --
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedEnemy.cs:66 FindTarget()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedEnemy.cs:119 IsTargetVisible()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedEnemy.cs:23 Navigate()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/RangedEnemy/RangedEnemy.cs:45 TryAttack()]]
+}
+
+@enduml

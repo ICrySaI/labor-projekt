@@ -1,7 +1,7 @@
 using Godot;
-using System;
-using System.Diagnostics;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class SelectableItem : PanelContainer
 {
     private Panel selectionMarker;

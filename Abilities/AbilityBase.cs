@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.InteropServices.Marshalling;
 using Godot;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public abstract partial class AbilityBase : Node3D, IInventoryItem
 {
 	[Export]

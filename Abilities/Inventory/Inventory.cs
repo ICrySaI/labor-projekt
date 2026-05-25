@@ -1,9 +1,10 @@
 using Godot;
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class Inventory : Node3D
 {
 	[Export(PropertyHint.NodeType, "RigidBody3D")]

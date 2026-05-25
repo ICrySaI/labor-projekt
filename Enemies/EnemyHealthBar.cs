@@ -1,8 +1,8 @@
 using Godot;
 using System;
-using System.ComponentModel;
-using System.Diagnostics;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class EnemyHealthBar : Sprite3D
 {
 	[Export(PropertyHint.NodeType, "CharacterBody3D")]

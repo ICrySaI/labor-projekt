@@ -1,0 +1,41 @@
+@startuml
+
+package PauseMenu-Scene [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.tscn]] {
+    class PauseMenu  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs ScriptFile]]
+        [Nodes]
+        InventoryDisplay - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.cs Script]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs:47 _Input()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs:38 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs:64 OnQuitPressed()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs:59 OnResumePressed()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs:21 pause()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/PauseMenu.cs:30 resume()]]
+    }
+    package InventoryDisplay-Scene [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.tscn]] {
+        class InventoryDisplay  {
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.cs ScriptFile]]
+            [Nodes]
+            Control - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs Script]]
+            Control2 - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs Script]]
+            --
+            [Methods]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.cs:15 _Ready()]]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.cs:22 refresh()]]
+        }
+        class ItemDisplay  {
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs ScriptFile]]
+            [Properties]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs:7 Item]]
+            --
+            [Methods]
+            [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs:23 _Ready()]]
+        }
+        InventoryDisplay::Control ---> ItemDisplay
+    }
+    PauseMenu::InventoryDisplay ---> InventoryDisplay
+}
+
+@enduml

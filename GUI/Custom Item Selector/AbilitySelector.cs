@@ -1,8 +1,9 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class AbilitySelector : Control
 {
     [Export(PropertyHint.NodeType, "Node3D")]

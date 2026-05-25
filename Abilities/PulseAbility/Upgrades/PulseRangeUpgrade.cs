@@ -1,7 +1,8 @@
 using Godot;
-using System;
 using System.Collections.Generic;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class PulseRangeUpgrade : UpgradeBase
 {
     [Export]

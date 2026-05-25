@@ -1,0 +1,14 @@
+@startuml
+
+class LevelUpManager  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/LevelUpManager.cs ScriptFile]]
+    [Properties]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/LevelUpManager.cs:7 KillsToLevelUp]]
+    --
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/LevelUpManager.cs:35 _ExitTree()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/LevelUpManager.cs:16 _Ready()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/LevelUpManager.cs:24 EnemyKilled()]]
+}
+
+@enduml

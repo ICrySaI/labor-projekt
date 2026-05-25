@@ -1,7 +1,7 @@
 using Godot;
-using System;
-using System.Collections;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class LightningVfx : Node3D
 {
 	[Export(PropertyHint.NodeType, "GPUParticles3D")]

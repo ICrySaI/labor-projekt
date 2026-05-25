@@ -1,0 +1,9 @@
+@startuml
+
+class MeleeEnemy  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/MeleeEnemy/MeleeEnemy.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/MeleeEnemy/MeleeEnemy.cs:10 TryAttack()]]
+}
+
+@enduml

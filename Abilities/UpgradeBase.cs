@@ -1,9 +1,8 @@
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Reflection;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public abstract partial class UpgradeBase : Resource, IInventoryItem
 {
 	[Export]

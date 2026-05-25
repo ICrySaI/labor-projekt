@@ -1,0 +1,12 @@
+@startuml
+
+class Inventory  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs:19 _Process()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs:37 addAbility()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs:65 GetItems()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/Inventory.cs:51 removeAbility()]]
+}
+
+@enduml

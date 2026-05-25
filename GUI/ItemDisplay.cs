@@ -1,6 +1,7 @@
 using Godot;
-using System;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class ItemDisplay : Control
 {
     public IInventoryItem Item {

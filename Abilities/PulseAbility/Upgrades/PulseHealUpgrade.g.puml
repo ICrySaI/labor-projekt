@@ -1,0 +1,11 @@
+@startuml
+
+class PulseHealUpgrade  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseHealUpgrade.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseHealUpgrade.cs:11 ApplyAdditiveUpgrades()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseHealUpgrade.cs:16 ApplyMultiplicativeUpgrades()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseHealUpgrade.cs:21 OnAbilityFired()]]
+}
+
+@enduml

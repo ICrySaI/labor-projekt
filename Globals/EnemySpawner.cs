@@ -1,10 +1,10 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Diagnostics;
 using System.Linq;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class EnemySpawner : Node
 {
     [Export(PropertyHint.NodeType, "NavigationRegion3D")]

@@ -1,0 +1,11 @@
+@startuml
+
+class MeleeEnemyAttack  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/MeleeEnemy/MeleeEnemyAttack.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/MeleeEnemy/MeleeEnemyAttack.cs:38 _Process()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/MeleeEnemy/MeleeEnemyAttack.cs:29 _Ready()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/MeleeEnemy/MeleeEnemyAttack.cs:50 CompleteAttack()]]
+}
+
+@enduml

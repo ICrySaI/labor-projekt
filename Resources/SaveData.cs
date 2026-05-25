@@ -1,8 +1,9 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class SaveData : Resource
 {
     public const string SavePath = "user://save_data.tres";

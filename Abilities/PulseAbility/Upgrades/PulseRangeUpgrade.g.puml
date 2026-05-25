@@ -1,0 +1,11 @@
+@startuml
+
+class PulseRangeUpgrade  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseRangeUpgrade.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseRangeUpgrade.cs:11 ApplyAdditiveUpgrades()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseRangeUpgrade.cs:19 ApplyMultiplicativeUpgrades()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/Upgrades/PulseRangeUpgrade.cs:24 OnAbilityFired()]]
+}
+
+@enduml

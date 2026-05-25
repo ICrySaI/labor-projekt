@@ -1,0 +1,18 @@
+@startuml
+
+class UpgradeBase  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs ScriptFile]]
+    [Properties]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:20 AbilityID]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:17 ItemDescription]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:11 ItemIcon]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:8 ItemID]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:14 ItemName]]
+    --
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:26 ApplyAdditiveUpgrades()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:24 ApplyMultiplicativeUpgrades()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/UpgradeBase.cs:28 OnAbilityFired()]]
+}
+
+@enduml

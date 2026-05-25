@@ -1,7 +1,9 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class PlayerCharacter : RigidBody3D
 {
 	//---------- Camera and movement control export variables ----------//

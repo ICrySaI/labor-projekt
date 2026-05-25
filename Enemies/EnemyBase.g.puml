@@ -1,0 +1,36 @@
+@startuml
+
+package EnemyBase-Scene [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.tscn]] {
+    class EnemyBase  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs ScriptFile]]
+        [Nodes]
+        HealthBar - [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs Script]]
+        [Properties]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:45 AttackDamage]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:77 CenterOfMass]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:55 CurrentHealth]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:30 Level]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:46 MaxHealth]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:98 _PhysicsProcess()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:88 _Process()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:81 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:165 FindTarget()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:119 Hit()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:142 MoveTowardsTarget()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:158 MoveWithVelocity()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:129 Navigate()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyBase.cs:219 TryAttack()]]
+    }
+    class EnemyHealthBar  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs:16 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs:26 HealthChanged()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs:35 LevelChanged()]]
+    }
+    EnemyBase::HealthBar ---> EnemyHealthBar
+}
+
+@enduml

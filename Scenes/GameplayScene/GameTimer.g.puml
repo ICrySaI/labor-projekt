@@ -1,0 +1,16 @@
+@startuml
+
+class GameTimer  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameTimer.cs ScriptFile]]
+    [Properties]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameTimer.cs:35 Hours]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameTimer.cs:21 Minutes]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameTimer.cs:7 Seconds]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameTimer.cs:44 TotalSeconds]]
+    --
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameTimer.cs:46 _Ready()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/GameTimer.cs:52 TimePassed()]]
+}
+
+@enduml

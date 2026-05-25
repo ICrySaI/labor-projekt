@@ -1,0 +1,13 @@
+@startuml
+
+class MainMenu  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/MainMenu.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/MainMenu.cs:28 _Process()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/MainMenu.cs:10 _Ready()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/MainMenu.cs:42 ClearScores()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/MainMenu.cs:37 QuitGame()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/MainMenu.cs:32 StartGame()]]
+}
+
+@enduml

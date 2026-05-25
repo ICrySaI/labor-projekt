@@ -1,7 +1,7 @@
 using Godot;
-using System.Collections.Generic;
-using System.Diagnostics;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class Globals : Node
 {
 	public static Globals Instance { get; private set; }

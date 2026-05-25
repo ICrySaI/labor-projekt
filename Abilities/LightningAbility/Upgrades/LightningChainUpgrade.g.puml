@@ -1,0 +1,11 @@
+@startuml
+
+class LightningChainUpgrade  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningChainUpgrade.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningChainUpgrade.cs:10 ApplyAdditiveUpgrades()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningChainUpgrade.cs:18 ApplyMultiplicativeUpgrades()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/Upgrades/LightningChainUpgrade.cs:23 OnAbilityFired()]]
+}
+
+@enduml

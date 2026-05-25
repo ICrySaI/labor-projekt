@@ -1,0 +1,25 @@
+@startuml
+
+package InventoryDisplay-Scene [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.tscn]] {
+    class InventoryDisplay  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.cs ScriptFile]]
+        [Nodes]
+        Control - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs Script]]
+        Control2 - [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs Script]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.cs:15 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/InventoryDisplay.cs:22 refresh()]]
+    }
+    class ItemDisplay  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs ScriptFile]]
+        [Properties]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs:7 Item]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs:23 _Ready()]]
+    }
+    InventoryDisplay::Control ---> ItemDisplay
+}
+
+@enduml

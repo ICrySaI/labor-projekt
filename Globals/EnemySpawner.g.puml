@@ -1,0 +1,10 @@
+@startuml
+
+class EnemySpawner  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/EnemySpawner.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/EnemySpawner.cs:30 _Process()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/EnemySpawner.cs:49 SpawnRandomEnemy()]]
+}
+
+@enduml

@@ -1,8 +1,8 @@
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class PulseAbility : AbilityBase
 {
     [Export]

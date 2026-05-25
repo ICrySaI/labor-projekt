@@ -1,0 +1,19 @@
+@startuml
+
+class LightningAbility  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs ScriptFile]]
+    [Properties]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:8 baseChainAmount]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:16 baseChainRange]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:24 baseDamage]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:10 ChainAmount]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:18 ChainRange]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:26 Damage]]
+    --
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:55 ChainFrom()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:36 Fire()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/LightningAbility/LightningAbility.cs:89 ResetStats()]]
+}
+
+@enduml

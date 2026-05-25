@@ -1,6 +1,7 @@
 using Godot;
-using System;
-using System.ComponentModel;
+using Chickensoft.UMLGenerator;
+
+[ClassDiagram(UseVSCodePaths = true)]
 
 public partial class GameInstance : Node3D
 {

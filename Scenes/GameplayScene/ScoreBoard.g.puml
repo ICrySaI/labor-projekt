@@ -1,0 +1,12 @@
+@startuml
+
+class ScoreBoard  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/ScoreBoard.cs ScriptFile]]
+    [Properties]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/ScoreBoard.cs:7 Score]]
+    --
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/ScoreBoard.cs:15 _Ready()]]
+}
+
+@enduml

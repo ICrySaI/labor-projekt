@@ -1,0 +1,11 @@
+@startuml
+
+class EnemyHealthBar  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs:16 _Ready()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs:26 HealthChanged()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Enemies/EnemyHealthBar.cs:35 LevelChanged()]]
+}
+
+@enduml

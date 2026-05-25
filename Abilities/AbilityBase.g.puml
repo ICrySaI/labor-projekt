@@ -1,0 +1,37 @@
+@startuml
+
+package AbilityBase-Type [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs]] {
+    class AbilityBase  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs ScriptFile]]
+        
+        --
+        [Properties]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:21 baseCooldownMS]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:23 CooldownMS]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:18 ItemDescription]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:12 ItemIcon]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:9 ItemID]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:15 ItemName]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:35 lastFired]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:37 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:63 AddUpgrade()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:76 Fire()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:78 OnAbilityFired()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:69 RemoveUpgrade()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:61 ResetStats()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs:44 UpdateStats()]]
+    }
+    class AbilityIconUI  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/AbilityIconUI.cs ScriptFile]]
+        [Constructors]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/AbilityIconUI.cs:9 AbilityIconUI]]([[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs AbilityBase]] ability)
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/AbilityIconUI.cs:44 CooldownChanged()]]
+    }
+    AbilityBase::AbilityIconUI ---> AbilityIconUI
+}
+
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+
+class PulseAbility  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs ScriptFile]]
+    [Properties]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:19 baseDamage]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:8 baseRange]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:21 Damage]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:10 Range]]
+    --
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:46 _Process()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:33 _Ready()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:74 AttackFinished()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:66 Fire()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/PulseAbility/PulseAbility.cs:83 ResetStats()]]
+}
+
+@enduml

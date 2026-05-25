@@ -1,9 +1,7 @@
 using Godot;
-using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class MeleeEnemy : EnemyBase
 {
 	[Export(PropertyHint.Range, "1, 20")]

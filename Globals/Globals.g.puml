@@ -1,0 +1,30 @@
+@startuml
+
+package Globals-Type [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/Globals.cs]] {
+    class Globals  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/Globals.cs ScriptFile]]
+        [Properties]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/Globals.cs:7 Instance]] - [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/Globals.cs Script]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/Globals.cs:23 mouseCaptured]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/Globals.cs:9 saveData]] - [[vscode://file/E:/School_stuff/Game/labor-projekt/Resources/SaveData.cs Script]]
+        --
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/Globals.cs:44 _Input()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/Globals.cs:58 _Notification()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/Globals.cs:37 _Ready()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/Globals.cs:25 CaptureMouse()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/Globals.cs:31 ReleaseMouse()]]
+    }
+    class SaveData  {
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Resources/SaveData.cs ScriptFile]]
+        [Methods]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Resources/SaveData.cs:21 AddScore()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Resources/SaveData.cs:31 Clear()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Resources/SaveData.cs:15 GetScores()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Resources/SaveData.cs:36 LoadOrCreate()]]
+        [[vscode://file/E:/School_stuff/Game/labor-projekt/Resources/SaveData.cs:26 save()]]
+    }
+    Globals::SaveData ---> SaveData
+}
+
+@enduml

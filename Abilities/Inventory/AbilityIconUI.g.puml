@@ -1,0 +1,12 @@
+@startuml
+
+class AbilityIconUI  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/AbilityIconUI.cs ScriptFile]]
+    [Constructors]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/AbilityIconUI.cs:9 AbilityIconUI]]([[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/AbilityBase.cs AbilityBase]] ability)
+    --
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Abilities/Inventory/AbilityIconUI.cs:44 CooldownChanged()]]
+}
+
+@enduml

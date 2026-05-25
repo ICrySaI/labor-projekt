@@ -1,0 +1,12 @@
+@startuml
+
+class ItemDisplay  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs ScriptFile]]
+    [Properties]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs:7 Item]]
+    --
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/GUI/ItemDisplay.cs:23 _Ready()]]
+}
+
+@enduml

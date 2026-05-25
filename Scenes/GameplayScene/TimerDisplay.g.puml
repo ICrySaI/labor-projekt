@@ -1,0 +1,10 @@
+@startuml
+
+class TimerDisplay  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/TimerDisplay.cs ScriptFile]]
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/TimerDisplay.cs:10 _Ready()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Scenes/GameplayScene/TimerDisplay.cs:16 TimePassed()]]
+}
+
+@enduml

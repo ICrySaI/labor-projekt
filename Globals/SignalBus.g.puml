@@ -1,0 +1,12 @@
+@startuml
+
+class SignalBus  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/SignalBus.cs ScriptFile]]
+    [Properties]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/SignalBus.cs:7 Instance]] - [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/SignalBus.cs Script]]
+    --
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Globals/SignalBus.cs:12 _Ready()]]
+}
+
+@enduml

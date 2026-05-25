@@ -1,6 +1,4 @@
 using Godot;
-using System;
-
 public partial interface IInventoryItem
 {
     public string ItemID { get; }

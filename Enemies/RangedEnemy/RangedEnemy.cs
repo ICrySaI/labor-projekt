@@ -1,9 +1,7 @@
 using Godot;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
+using Chickensoft.UMLGenerator;
 
+[ClassDiagram(UseVSCodePaths = true)]
 public partial class RangedEnemy : EnemyBase
 {
 	[Export(PropertyHint.NodeType, "Node3D")]

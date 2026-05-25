@@ -1,0 +1,28 @@
+@startuml
+
+class PlayerCharacter  {
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs ScriptFile]]
+    [Properties]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:65 CurrentHealth]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:53 MaxHealth]]
+    --
+    [Methods]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:121 _PhysicsProcess()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:112 _Ready()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:206 _UnhandledInput()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:171 _UnhandledKeyInput()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:279 BulletJump()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:384 Dash()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:310 EndBulletJump()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:375 EndGlide()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:343 EndSlide()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:261 Jump()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:239 LandedOnGround()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:246 LeftGround()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:414 ResetDash()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:357 StartGlide()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:316 StartSlide()]]
+    [[vscode://file/E:/School_stuff/Game/labor-projekt/Player/PlayerCharacter.cs:251 UpdateGravityScale()]]
+}
+
+@enduml

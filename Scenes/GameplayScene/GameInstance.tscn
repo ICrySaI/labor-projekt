@@ -16,7 +16,7 @@
 [ext_resource type="Material" uid="uid://bsklgjsch3h64" path="res://Resources/textures/SBS - Tiny Texture Pack 2 - 256x256/256x256/Stone/Stone_11-256x256.tres" id="13_c8axf"]
 [ext_resource type="Material" uid="uid://bgagwnjoa1ryd" path="res://Resources/textures/SBS - Tiny Texture Pack 2 - 256x256/256x256/Elements/Elements_18-256x256.tres" id="14_46rdn"]
 [ext_resource type="Material" uid="uid://c6rrof6timjki" path="res://Resources/textures/SBS - Tiny Texture Pack 2 - 256x256/256x256/Dirt/Dirt_03-256x256.tres" id="15_8ab3d"]
-[ext_resource type="PackedScene" uid="uid://b3c170w0ip8dt" path="res://Globals/EnemySpawner.tscn" id="16_15i6o"]
+[ext_resource type="PackedScene" uid="uid://b3c170w0ip8dt" path="res://Scenes/GameplayScene/EnemySpawner.tscn" id="16_15i6o"]
 [ext_resource type="Theme" uid="uid://ciodp1p3ksd0f" path="res://GUI/GUITheme.tres" id="17_4cxge"]
 [ext_resource type="Script" uid="uid://dq0vjwu82lwwi" path="res://Scenes/GameplayScene/TimerDisplay.cs" id="18_gygj2"]
 [ext_resource type="Script" uid="uid://7svcyyoibobs" path="res://Scenes/GameplayScene/GameTimer.cs" id="18_v4xgv"]

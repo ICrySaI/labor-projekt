@@ -39,9 +39,4 @@ public partial class AbilityIconUI : ProgressBar
 			AddThemeStyleboxOverride("background", backgroundStyle);
 		}
 	}
-
-	private void CooldownChanged()
-	{
-		MaxValue = ability.CooldownMS;
-	}
 }
